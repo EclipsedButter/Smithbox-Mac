@@ -88,9 +88,9 @@ public class ProjectEnumBank
         if (Smithbox.ProjectType == ProjectType.Undefined)
             return;
 
-        var resourcePath = $"{Smithbox.SmithboxDataRoot}\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\";
+        var resourcePath = $"{Smithbox.SmithboxDataRoot}/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/";
 
-        var resourceFilePath = $"{resourcePath}\\Enums.json";
+        var resourceFilePath = $"{resourcePath}/Enums.json";
 
         if (File.Exists(resourceFilePath))
         {
@@ -116,8 +116,8 @@ public class ProjectEnumBank
         if (Smithbox.ProjectType == ProjectType.Undefined)
             return;
 
-        var enumFileDir = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\";
-        var enumFilePath = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Enums.json";
+        var enumFileDir = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/";
+        var enumFilePath = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Enums.json";
 
         var baseResourcePath = AppContext.BaseDirectory + enumFilePath;
         var projectResourcePath = Smithbox.SmithboxDataRoot + enumFilePath;
@@ -148,7 +148,7 @@ public class ProjectEnumBank
 
         CreateProjectEnumFile();
 
-        var enumFilePath = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Enums.json";
+        var enumFilePath = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Enums.json";
         var projectResourcePath = Smithbox.SmithboxDataRoot + enumFilePath;
 
         if (File.Exists(projectResourcePath))
@@ -181,7 +181,7 @@ public class ProjectEnumBank
 
         CreateProjectEnumFile();
 
-        var enumFilePath = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Enums.json";
+        var enumFilePath = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Enums.json";
         var baseResourcePath = AppContext.BaseDirectory + enumFilePath;
         var projectResourcePath = Smithbox.SmithboxDataRoot + enumFilePath;
 
@@ -249,7 +249,7 @@ public class ProjectEnumBank
 
         CreateProjectEnumFile();
 
-        var enumFilePath = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Enums.json";
+        var enumFilePath = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Enums.json";
         var projectResourcePath = Smithbox.SmithboxDataRoot + enumFilePath;
 
         if (File.Exists(projectResourcePath))
@@ -294,7 +294,7 @@ public class ProjectEnumBank
 
         CreateProjectEnumFile();
 
-        var enumFilePath = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Enums.json";
+        var enumFilePath = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Enums.json";
         var projectResourcePath = Smithbox.SmithboxDataRoot + enumFilePath;
 
         if (File.Exists(projectResourcePath))
@@ -331,7 +331,7 @@ public class ProjectEnumBank
 
         CreateProjectEnumFile();
 
-        var enumFilePath = $"\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Enums.json";
+        var enumFilePath = $"/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Enums.json";
         var projectResourcePath = Smithbox.SmithboxDataRoot + enumFilePath;
 
         if (File.Exists(projectResourcePath))

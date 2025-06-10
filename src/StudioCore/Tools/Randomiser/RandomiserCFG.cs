@@ -48,12 +48,12 @@ public class RandomiserCFG
 
     public static string GetConfigFilePath()
     {
-        return $@"{GetConfigFolderPath()}\{Config_FileName}";
+        return $@"{GetConfigFolderPath()}/{Config_FileName}";
     }
 
     public static string GetConfigFolderPath()
     {
-        return $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\{FolderName}";
+        return $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/{FolderName}";
     }
 
     private static void LoadConfig()

@@ -27,10 +27,10 @@ public static class EsdMeta
         TalkEsdBank.functions = new List<EsdMeta_Function>();
         TalkEsdBank.enums = new List<EsdMeta_Enum>();
 
-        var metaDir = $"{AppContext.BaseDirectory}\\Assets\\ESD\\{MiscLocator.GetGameIDForDir()}";
+        var metaDir = $"{AppContext.BaseDirectory}/Assets/ESD/{MiscLocator.GetGameIDForDir()}";
 
         // Only supporting Talk ESD currently (change this based on project type)
-        var resourcePath = $"{metaDir}\\Talk.json";
+        var resourcePath = $"{metaDir}/Talk.json";
 
         if (File.Exists(resourcePath))
         {

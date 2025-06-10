@@ -188,7 +188,7 @@ public class ProjectModal
 
             if (newProject.Config.GameType == ProjectType.BB)
             {
-                newProject.Config.GameRoot += @"\dvdroot_ps4";
+                newProject.Config.GameRoot += @"/dvdroot_ps4";
             }
         }
 
@@ -206,7 +206,7 @@ public class ProjectModal
 
                 if (newProject.Config.GameType == ProjectType.BB)
                 {
-                    newProject.Config.GameRoot += @"\dvdroot_ps4";
+                    newProject.Config.GameRoot += @"/dvdroot_ps4";
                 }
             }
         }
@@ -250,7 +250,7 @@ public class ProjectModal
         // Create
         if (ImGui.Button("Create", new Vector2(120, 0) * DPI.GetUIScale()))
         {
-            newProject.ProjectJsonPath = $@"{newProjectDirectory}\project.json";
+            newProject.ProjectJsonPath = $@"{newProjectDirectory}/project.json";
 
             bool validProject = CanCreateNewProject();
 
@@ -307,7 +307,7 @@ public class ProjectModal
                 validated = false;
             }
 
-            if (validated && File.Exists($@"{newProjectDirectory}\project.json"))
+            if (validated && File.Exists($@"{newProjectDirectory}/project.json"))
             {
                 DialogResult message = PlatformUtils.Instance.MessageBox(
                     "Your selected project directory already contains a project.json. Would you like to replace it?",

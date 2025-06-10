@@ -59,11 +59,11 @@ public static class ResourceListLocator
         List<ResourceDescriptor> ret = new();
         if (Smithbox.ProjectType == ProjectType.DS3 || Smithbox.ProjectType == ProjectType.SDT)
         {
-            if (!Directory.Exists(Smithbox.GameRoot + $@"\map\{mapid}\"))
+            if (!Directory.Exists(Smithbox.GameRoot + $@"/map/{mapid}/"))
                 return ret;
 
             var mapfiles = Directory
-                .GetFileSystemEntries(Smithbox.GameRoot + $@"\map\{mapid}\", @"*.mapbnd.dcx").ToList();
+                .GetFileSystemEntries(Smithbox.GameRoot + $@"/map/{mapid}/", @"*.mapbnd.dcx").ToList();
             foreach (var f in mapfiles)
             {
                 ResourceDescriptor ad = new();
@@ -77,7 +77,7 @@ public static class ResourceListLocator
         }
         else if (Smithbox.ProjectType == ProjectType.ER)
         {
-            var mapPath = Smithbox.GameRoot + $@"\map\{mapid[..3]}\{mapid}";
+            var mapPath = Smithbox.GameRoot + $@"/map/{mapid[..3]}/{mapid}";
             if (!Directory.Exists(mapPath))
                 return ret;
 
@@ -95,7 +95,7 @@ public static class ResourceListLocator
         }
         else if (Smithbox.ProjectType == ProjectType.AC6)
         {
-            var mapPath = Smithbox.GameRoot + $@"\map\{mapid[..3]}\{mapid}";
+            var mapPath = Smithbox.GameRoot + $@"/map/{mapid[..3]}/{mapid}";
             if (!Directory.Exists(mapPath))
                 return ret;
 
@@ -113,11 +113,11 @@ public static class ResourceListLocator
         }
         else
         {
-            if (!Directory.Exists(Smithbox.GameRoot + $@"\map\{mapid}\"))
+            if (!Directory.Exists(Smithbox.GameRoot + $@"/map/{mapid}/"))
                 return ret;
 
             var ext = Smithbox.ProjectType == ProjectType.DS1 ? @"*.flver" : @"*.flver.dcx";
-            var mapfiles = Directory.GetFileSystemEntries(Smithbox.GameRoot + $@"\map\{mapid}\", ext)
+            var mapfiles = Directory.GetFileSystemEntries(Smithbox.GameRoot + $@"/map/{mapid}/", ext)
                 .ToList();
             foreach (var f in mapfiles)
             {
@@ -143,14 +143,14 @@ public static class ResourceListLocator
             HashSet<string> chrs = new();
             List<string> ret = new();
 
-            var modelDir = @"\chr";
+            var modelDir = @"/chr";
             var modelExt = @".chrbnd.dcx";
 
             if (Smithbox.ProjectType == ProjectType.DS1)
                 modelExt = ".chrbnd";
             else if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
             {
-                modelDir = @"\model\chr";
+                modelDir = @"/model/chr";
                 modelExt = ".bnd";
             }
 
@@ -206,7 +206,7 @@ public static class ResourceListLocator
         HashSet<string> objs = new();
         List<string> ret = new();
 
-        var modelDir = @"\obj";
+        var modelDir = @"/obj";
         var modelExt = @".objbnd.dcx";
 
         if (Smithbox.ProjectType == ProjectType.DS1)
@@ -215,19 +215,19 @@ public static class ResourceListLocator
         }
         else if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
         {
-            modelDir = @"\model\obj";
+            modelDir = @"/model/obj";
             modelExt = ".bnd";
         }
         else if (Smithbox.ProjectType == ProjectType.ER)
         {
             // AEGs are objs in my heart :(
-            modelDir = @"\asset\aeg";
+            modelDir = @"/asset/aeg";
             modelExt = ".geombnd.dcx";
         }
         else if (Smithbox.ProjectType == ProjectType.AC6)
         {
             // AEGs are objs in my heart :(
-            modelDir = @"\asset\environment\geometry";
+            modelDir = @"/asset/environment/geometry";
             modelExt = ".geombnd.dcx";
         }
 
@@ -252,7 +252,7 @@ public static class ResourceListLocator
             {
                 if (Directory.Exists(folder))
                 {
-                    var tempRootDir = $@"{rootDir}\{folder.Substring(folder.Length - 6)}";
+                    var tempRootDir = $@"{rootDir}/{folder.Substring(folder.Length - 6)}";
 
                     if (Directory.Exists(tempRootDir))
                     {
@@ -288,7 +288,7 @@ public static class ResourceListLocator
                 {
                     if (Directory.Exists(folder))
                     {
-                        var tempModDir = $@"{modDir}\{folder.Substring(folder.Length - 6)}";
+                        var tempModDir = $@"{modDir}/{folder.Substring(folder.Length - 6)}";
 
                         if (Directory.Exists(tempModDir))
                         {
@@ -319,7 +319,7 @@ public static class ResourceListLocator
             HashSet<string> parts = new();
             List<string> ret = new();
 
-            var modelDir = @"\parts";
+            var modelDir = @"/parts";
             var modelExt = @".partsbnd.dcx";
 
             if (Smithbox.ProjectType == ProjectType.DS1)
@@ -328,7 +328,7 @@ public static class ResourceListLocator
             }
             else if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
             {
-                modelDir = @"\model\parts";
+                modelDir = @"/model/parts";
                 modelExt = ".bnd";
                 var partsGatheredFiles = Directory.GetFiles(Smithbox.GameRoot + modelDir, "*", SearchOption.AllDirectories);
 

@@ -20,7 +20,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class MeshGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Mesh Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Mesh Groups/";
 
         public static List<string> MeshGroupFiles = new List<string>();
 
@@ -238,7 +238,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static MeshList ReadMeshGroup(string entry)
         {
             var newMeshList = new MeshList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

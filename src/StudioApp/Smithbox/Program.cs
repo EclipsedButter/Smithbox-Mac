@@ -70,13 +70,13 @@ namespace Smithbox
         }
 
 
-        static readonly string CrashLogPath = $"{Directory.GetCurrentDirectory()}\\Crash Logs";
+        static readonly string CrashLogPath = $"{Directory.GetCurrentDirectory()}/Crash Logs";
         static void ExportCrashLog(List<string> exceptionInfo)
         {
             var time = $"{DateTime.Now:yyyy-M-dd--HH-mm-ss}";
             exceptionInfo.Insert(0, $"Smithbox - Version {_version}\n");
             Directory.CreateDirectory($"{CrashLogPath}");
-            var crashLogPath = $"{CrashLogPath}\\Log {time}.txt";
+            var crashLogPath = $"{CrashLogPath}/Log {time}.txt";
             File.WriteAllLines(crashLogPath, exceptionInfo);
 
             if (exceptionInfo.Count > 10)

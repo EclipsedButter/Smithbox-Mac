@@ -342,25 +342,25 @@ namespace Veldrid
             return (IntPtr)src64;
         }
 
-        public static VkAccessFlags2 AccessFlagsFromBufferUsageFlags(VkBufferUsageFlags flags)
+        public static VkAccessFlags AccessFlagsFromBufferUsageFlags(VkBufferUsageFlags flags)
         {
-            VkAccessFlags2 ret = VkAccessFlags2.None;
+            VkAccessFlags ret = VkAccessFlags.None;
             if (flags.HasFlag(VkBufferUsageFlags.TransferSrc))
-                ret |= VkAccessFlags2.TransferRead;
+                ret |= VkAccessFlags.TransferRead;
             if (flags.HasFlag(VkBufferUsageFlags.TransferDst))
-                ret |= VkAccessFlags2.TransferWrite;
+                ret |= VkAccessFlags.TransferWrite;
             if (flags.HasFlag(VkBufferUsageFlags.UniformBuffer))
-                ret |= VkAccessFlags2.UniformRead;
+                ret |= VkAccessFlags.UniformRead;
             if (flags.HasFlag(VkBufferUsageFlags.StorageBuffer))
-                ret |= VkAccessFlags2.ShaderStorageRead | VkAccessFlags2.ShaderStorageWrite;
+                ret |= VkAccessFlags.ShaderRead | VkAccessFlags.ShaderWrite; //! was ShaderStorageRead, ShaderStorageWrite
             if (flags.HasFlag(VkBufferUsageFlags.IndexBuffer))
-                ret |= VkAccessFlags2.IndexRead;
+                ret |= VkAccessFlags.IndexRead;
             if (flags.HasFlag(VkBufferUsageFlags.VertexBuffer))
-                ret |= VkAccessFlags2.VertexAttributeRead;
+                ret |= VkAccessFlags.VertexAttributeRead;
             if (flags.HasFlag(VkBufferUsageFlags.IndirectBuffer))
-                ret |= VkAccessFlags2.IndirectCommandRead;
+                ret |= VkAccessFlags.IndirectCommandRead;
             if (flags.HasFlag(VkBufferUsageFlags.ShaderDeviceAddress))
-                ret |= VkAccessFlags2.ShaderStorageRead;
+                ret |= VkAccessFlags.ShaderRead; //! ditto
             return ret;
         }
     }

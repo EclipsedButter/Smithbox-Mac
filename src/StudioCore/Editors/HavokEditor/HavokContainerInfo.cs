@@ -232,7 +232,7 @@ public class HavokContainerInfo
         switch (Type)
         {
             case HavokContainerType.Behavior:
-                return @"\chr\";
+                return @"/chr/";
             default: break;
         }
 

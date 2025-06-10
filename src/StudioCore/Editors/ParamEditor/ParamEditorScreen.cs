@@ -306,7 +306,7 @@ public class ParamEditorScreen : EditorScreen
                             {
                                 IReadOnlyList<Param.Row> rows = param.Value.Rows;
                                 TryWriteFile(
-                                    $@"{path}\{param.Key}.csv",
+                                    $@"{path}/{param.Key}.csv",
                                     ParamIO.GenerateCSV(rows, param.Value, CFG.Current.Param_Export_Delimiter[0]));
                             }
                         }
@@ -1144,7 +1144,7 @@ public class ParamEditorScreen : EditorScreen
     {
         var oldRegulationPath = "";
         var regulationFolder = "";
-        var storedRegulationDirectory = AppContext.BaseDirectory + $"\\Assets\\Regulations\\{MiscLocator.GetGameIDForDir()}\\";
+        var storedRegulationDirectory = AppContext.BaseDirectory + $"/Assets/Regulations/{MiscLocator.GetGameIDForDir()}/";
 
         if (Smithbox.ProjectType == ProjectType.ER)
         {
@@ -1197,7 +1197,7 @@ public class ParamEditorScreen : EditorScreen
 
         if (regulationFolder != "")
         {
-            oldRegulationPath = $"{storedRegulationDirectory}\\{regulationFolder}\\regulation.bin";
+            oldRegulationPath = $"{storedRegulationDirectory}/{regulationFolder}/regulation.bin";
         }
 
         return oldRegulationPath;
@@ -1243,7 +1243,7 @@ public class ParamEditorScreen : EditorScreen
         if (result == ParamBank.ParamUpgradeResult.RowConflictsFound)
         {
             // If there's row conflicts write a conflict log
-            var logPath = $@"{Smithbox.ProjectRoot}\regulationUpgradeLog.txt";
+            var logPath = $@"{Smithbox.ProjectRoot}/regulationUpgradeLog.txt";
             if (File.Exists(logPath))
             {
                 File.Delete(logPath);

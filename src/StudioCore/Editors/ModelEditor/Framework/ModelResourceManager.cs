@@ -731,11 +731,11 @@ public class ModelResourceManager : IResourceEventListener
                 // DS1 / DS1R Map Pieces
                 if(binderType is FlverBinderType.None)
                 {
-                    var directory = $"map\\{container.MapID}\\";
-                    var path = $"map\\{container.MapID}\\{container.ContainerName}.flver";
+                    var directory = $"map/{container.MapID}/";
+                    var path = $"map/{container.MapID}/{container.ContainerName}.flver";
 
-                    var projectDirectory = $"{Smithbox.ProjectRoot}\\{directory}";
-                    var savePath = $"{Smithbox.ProjectRoot}\\{path}";
+                    var projectDirectory = $"{Smithbox.ProjectRoot}/{directory}";
+                    var savePath = $"{Smithbox.ProjectRoot}/{path}";
 
                     if (!Directory.Exists(projectDirectory))
                     {

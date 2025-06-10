@@ -463,17 +463,17 @@ public class FlverResource : IResource, IDisposable
 
         if (blendMask)
         {
-            dest.ShaderName = @"FlverShader\FlverShader_blendmask";
+            dest.ShaderName = @"FlverShader/FlverShader_blendmask";
             dest.LayoutType = MeshLayoutType.LayoutUV2;
         }
         else if (blend)
         {
-            dest.ShaderName = @"FlverShader\FlverShader_blend";
+            dest.ShaderName = @"FlverShader/FlverShader_blend";
             dest.LayoutType = MeshLayoutType.LayoutUV2;
         }
         else
         {
-            dest.ShaderName = @"FlverShader\FlverShader";
+            dest.ShaderName = @"FlverShader/FlverShader";
             dest.LayoutType = MeshLayoutType.LayoutStandard;
         }
 
@@ -531,17 +531,17 @@ public class FlverResource : IResource, IDisposable
 
         if (blendMask)
         {
-            dest.ShaderName = @"FlverShader\FlverShader_blendmask";
+            dest.ShaderName = @"FlverShader/FlverShader_blendmask";
             dest.LayoutType = MeshLayoutType.LayoutUV2;
         }
         else if (blend)
         {
-            dest.ShaderName = @"FlverShader\FlverShader_blend";
+            dest.ShaderName = @"FlverShader/FlverShader_blend";
             dest.LayoutType = MeshLayoutType.LayoutUV2;
         }
         else
         {
-            dest.ShaderName = @"FlverShader\FlverShader";
+            dest.ShaderName = @"FlverShader/FlverShader";
             dest.LayoutType = MeshLayoutType.LayoutStandard;
         }
 

@@ -340,16 +340,16 @@ public class Renderer
             foreach ((DeviceBuffer, DeviceBuffer, Action<GraphicsDevice>) entry in _readbackPendingQueue)
             {
                 readbackCommandList.BufferBarrier(entry.Item2,
-                    VkPipelineStageFlags2.AllGraphics,
-                    VkAccessFlags2.MemoryWrite | VkAccessFlags2.ShaderWrite,
-                    VkPipelineStageFlags2.Transfer,
-                    VkAccessFlags2.TransferRead);
+                    VkPipelineStageFlags.AllGraphics,
+                    VkAccessFlags.MemoryWrite | VkAccessFlags.ShaderWrite,
+                    VkPipelineStageFlags.Transfer,
+                    VkAccessFlags.TransferRead);
                 readbackCommandList.CopyBuffer(entry.Item2, 0, entry.Item1, 0, entry.Item2.SizeInBytes);
                 readbackCommandList.BufferBarrier(entry.Item1,
-                    VkPipelineStageFlags2.Transfer,
-                    VkAccessFlags2.TransferWrite,
-                    VkPipelineStageFlags2.Host,
-                    VkAccessFlags2.HostRead);
+                    VkPipelineStageFlags.Transfer,
+                    VkAccessFlags.TransferWrite,
+                    VkPipelineStageFlags.Host,
+                    VkAccessFlags.HostRead);
             }
 
             _postDrawCommandLists.Add((readbackCommandList, _readbackFence));
@@ -576,10 +576,10 @@ public class Renderer
             {
                 // Copy the indirect buffer to the gpu
                 cl.UpdateBuffer(_indirectBuffer, 0, _indirectStagingBuffer);
-                cl.Barrier(VkPipelineStageFlags2.Transfer,
-                    VkAccessFlags2.TransferRead,
-                    VkPipelineStageFlags2.DrawIndirect,
-                    VkAccessFlags2.IndirectCommandRead);
+                cl.Barrier(VkPipelineStageFlags.Transfer,
+                    VkAccessFlags.TransferRead,
+                    VkPipelineStageFlags.DrawIndirect,
+                    VkAccessFlags.IndirectCommandRead);
             }
         }
 

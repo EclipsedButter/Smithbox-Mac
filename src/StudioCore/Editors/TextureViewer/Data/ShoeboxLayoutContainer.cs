@@ -29,14 +29,14 @@ public class ShoeboxLayoutContainer
     {
         if (Smithbox.ProjectType is ProjectType.ER or ProjectType.AC6)
         {
-            string sourcePath = $@"menu\hi\01_common.sblytbnd.dcx";
-            if (File.Exists($@"{Smithbox.ProjectRoot}\{sourcePath}"))
+            string sourcePath = $@"menu/hi/01_common.sblytbnd.dcx";
+            if (File.Exists($@"{Smithbox.ProjectRoot}/{sourcePath}"))
             {
-                sourcePath = $@"{Smithbox.ProjectRoot}\{sourcePath}";
+                sourcePath = $@"{Smithbox.ProjectRoot}/{sourcePath}";
             }
             else
             {
-                sourcePath = $@"{Smithbox.GameRoot}\{sourcePath}";
+                sourcePath = $@"{Smithbox.GameRoot}/{sourcePath}";
             }
 
             if (File.Exists(sourcePath))

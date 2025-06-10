@@ -99,7 +99,7 @@ namespace StudioCore.Tools.Validation
             var dir = Smithbox.GameRoot;
             var mod = Smithbox.ProjectRoot;
 
-            var param = $@"{mod}\regulation.bin";
+            var param = $@"{mod}/regulation.bin";
 
             // DES, DS1, DS1R
             if (Smithbox.ProjectType == ProjectType.DES || Smithbox.ProjectType == ProjectType.DS1 || Smithbox.ProjectType == ProjectType.DS1R)
@@ -132,7 +132,7 @@ namespace StudioCore.Tools.Validation
             // DS3
             if (Smithbox.ProjectType == ProjectType.DS3)
             {
-                param = $@"{mod}\Data0.bdt";
+                param = $@"{mod}/Data0.bdt";
 
                 try
                 {
@@ -198,7 +198,7 @@ namespace StudioCore.Tools.Validation
             // Load every param in the regulation
             foreach (BinderFile f in parambnd.Files)
             {
-                var paramName = Path.GetFileNameWithoutExtension(f.Name);
+                var paramName = Path.GetFileNameWithoutExtension(f.Name.Replace('\\', '/')); //!
 
                 if (!f.Name.ToUpper().EndsWith(".PARAM"))
                 {
@@ -228,7 +228,7 @@ namespace StudioCore.Tools.Validation
                 }
                 catch (Exception e)
                 {
-                    var name = f.Name.Split("\\").Last();
+                    var name = f.Name.Replace('\\','/').Split("/").Last(); //!
                     var message = $"Could not apply ParamDef for {name}";
 
                     TaskLogs.AddLog(message,

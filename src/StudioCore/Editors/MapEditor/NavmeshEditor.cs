@@ -122,7 +122,7 @@ public class NavmeshEditor
                         _previewMesh.World = mrp.World;
 
                         // Do a test save
-                        var path = $@"{Smithbox.ProjectRoot}\navout\test.hkx";
+                        var path = $@"{Smithbox.ProjectRoot}/navout/test.hkx";
                         using (FileStream s2 = File.Create(path))
                         {
                             BinaryWriterEx bw = new(false, s2);

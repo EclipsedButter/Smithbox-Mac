@@ -55,8 +55,8 @@ public class UI
     public bool System_Font_Korean = false;
     public bool System_Font_Thai = false;
     public bool System_Font_Vietnamese = false;
-    public string System_English_Font = "Assets\\Fonts\\RobotoMono-Light.ttf";
-    public string System_Other_Font = "Assets\\Fonts\\NotoSansCJKtc-Light.otf";
+    public string System_English_Font = "Assets/Fonts/RobotoMono-Light.ttf";
+    public string System_Other_Font = "Assets/Fonts/NotoSansCJKtc-Light.otf";
 
     public bool System_DisplayResourceLoadingWindow = true;
 
@@ -70,7 +70,7 @@ public class UI
     //**************
     // Interface
     //**************
-    public float Interface_FontSize = 14.0f;
+    public float Interface_FontSize = 8.0f;
 
     public float Interface_ButtonHeight = 32.0f;
     public float Interface_ThinButtonHeight = 24.0f;
@@ -283,12 +283,12 @@ public class UI
     //**************
     public static string GetConfigFilePath()
     {
-        return $@"{GetConfigFolderPath()}\{Config_FileName}";
+        return $@"{GetConfigFolderPath()}/{Config_FileName}";
     }
 
     public static string GetConfigFolderPath()
     {
-        return $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\{FolderName}";
+        return $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/{FolderName}";
     }
 
     private static void LoadConfig()

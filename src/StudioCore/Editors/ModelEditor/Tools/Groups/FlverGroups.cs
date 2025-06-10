@@ -19,7 +19,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class FlverGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\FLVER Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/FLVER Groups/";
 
         public static List<string> FLVERGroupFiles = new List<string>();
 
@@ -180,7 +180,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static FLVERList ReadFLVERGroup(string entry)
         {
             var newFLVERList = new FLVERList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

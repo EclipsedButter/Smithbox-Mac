@@ -20,7 +20,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class MaterialGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Material Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Material Groups/";
 
         public static List<string> MaterialGroupFiles = new List<string>();
 
@@ -238,7 +238,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static MaterialList ReadMaterialGroup(string entry)
         {
             var newMaterialList = new MaterialList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

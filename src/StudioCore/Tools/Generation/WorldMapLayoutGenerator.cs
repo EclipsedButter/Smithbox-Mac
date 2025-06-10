@@ -120,7 +120,7 @@ namespace StudioCore.Tools.Generation
             {  9, new List<int> { 0, 0, 1, 1, 0, 0, 0 }},
         };
 
-        public static string exportPath = $"F:\\SteamLibrary\\steamapps\\common\\ELDEN RING\\Game\\layout_export.txt";
+        public static string exportPath = $"F:/SteamLibrary/steamapps/common/ELDEN RING/Game/layout_export.txt";
 
         public static void SelectExportDirectory()
         {

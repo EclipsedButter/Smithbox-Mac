@@ -22,13 +22,13 @@ public static class Test_MSB_ER_BytePerfect
             if (!decompressed.Span.SequenceEqual(written))
             {
                 var basepath = Path.GetDirectoryName(path.AssetPath);
-                if (!Directory.Exists($@"{basepath}\mismatches"))
+                if (!Directory.Exists($@"{basepath}/mismatches"))
                 {
-                    Directory.CreateDirectory($@"{basepath}\mismatches");
+                    Directory.CreateDirectory($@"{basepath}/mismatches");
                 }
 
                 Console.WriteLine($@"Mismatch: {msb}");
-                File.WriteAllBytes($@"{basepath}\mismatches\{Path.GetFileNameWithoutExtension(path.AssetPath)}",
+                File.WriteAllBytes($@"{basepath}/mismatches/{Path.GetFileNameWithoutExtension(path.AssetPath)}",
                     written);
             }
         }

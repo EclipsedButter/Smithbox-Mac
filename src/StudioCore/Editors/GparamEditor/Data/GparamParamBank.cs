@@ -66,24 +66,24 @@ public static class GparamParamBank
                 return;
         }
 
-        var paramDir = @"\param\drawparam";
+        var paramDir = @"/param/drawparam";
         var paramExt = @".gparam.dcx";
 
         if (Smithbox.ProjectType == ProjectType.DS2S)
         {
-            paramDir = @"\filter";
+            paramDir = @"/filter";
             paramExt = @".fltparam";
         }
 
-        var assetRoot = $@"{Smithbox.GameRoot}\{paramDir}\{info.Name}{paramExt}";
-        var assetMod = $@"{Smithbox.ProjectRoot}\{paramDir}\{info.Name}{paramExt}";
+        var assetRoot = $@"{Smithbox.GameRoot}/{paramDir}/{info.Name}{paramExt}";
+        var assetMod = $@"{Smithbox.ProjectRoot}/{paramDir}/{info.Name}{paramExt}";
 
         if (Smithbox.ProjectRoot != "")
         {
             // Add drawparam folder if it does not exist in GameModDirectory
-            if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{paramDir}\\"))
+            if (!Directory.Exists($"{Smithbox.ProjectRoot}/{paramDir}/"))
             {
-                Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{paramDir}\\");
+                Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{paramDir}/");
             }
 
             // Make a backup of the original file if a mod path doesn't exist
@@ -111,12 +111,12 @@ public static class GparamParamBank
         ParamBank = new();
         VanillaParamBank = new();
 
-        var paramDir = @"\param\drawparam";
+        var paramDir = @"/param/drawparam";
         var paramExt = @".gparam.dcx";
 
         if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
         {
-            paramDir = @"\filter";
+            paramDir = @"/filter";
             paramExt = @".fltparam";
         }
 
@@ -128,20 +128,20 @@ public static class GparamParamBank
 
         foreach (var name in GetGparamFileNames())
         {
-            var filePath = $"{paramDir}\\{name}{paramExt}";
+            var filePath = $"{paramDir}/{name}{paramExt}";
 
-            if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+            if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
             {
-                LoadGraphicsParam($"{Smithbox.ProjectRoot}\\{filePath}", true);
+                LoadGraphicsParam($"{Smithbox.ProjectRoot}/{filePath}", true);
                 //TaskLogs.AddLog($"Loaded from GameModDirectory: {filePath}");
             }
             else
             {
-                LoadGraphicsParam($"{Smithbox.GameRoot}\\{filePath}", false);
+                LoadGraphicsParam($"{Smithbox.GameRoot}/{filePath}", false);
                 //TaskLogs.AddLog($"Loaded from GameRootDirectory: {filePath}");
             }
 
-            LoadVanillaGraphicsParam($"{Smithbox.GameRoot}\\{filePath}", false);
+            LoadVanillaGraphicsParam($"{Smithbox.GameRoot}/{filePath}", false);
         }
 
         IsLoaded = true;
@@ -224,12 +224,12 @@ public static class GparamParamBank
 
     public static List<string> GetGparamFileNames()
     {
-        var paramDir = @"\param\drawparam";
+        var paramDir = @"/param/drawparam";
         var paramExt = @".gparam.dcx";
 
         if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
         {
-            paramDir = @"\filter";
+            paramDir = @"/filter";
             paramExt = @".fltparam";
         }
 

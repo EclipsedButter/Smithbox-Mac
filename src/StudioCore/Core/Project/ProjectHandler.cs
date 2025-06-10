@@ -114,7 +114,7 @@ public class ProjectHandler
         Smithbox.ProjectType = CurrentProject.Config.GameType;
         Smithbox.GameRoot = CurrentProject.Config.GameRoot;
         Smithbox.ProjectRoot = Path.GetDirectoryName(path);
-        Smithbox.SmithboxDataRoot = $"{Smithbox.ProjectRoot}\\.smithbox";
+        Smithbox.SmithboxDataRoot = $"{Smithbox.ProjectRoot}/.smithbox";
 
         if (Smithbox.ProjectRoot == "")
             TaskLogs.AddLog("Smithbox.ProjectRoot is empty!");
@@ -176,7 +176,7 @@ public class ProjectHandler
         Smithbox.ProjectType = CurrentProject.Config.GameType;
         Smithbox.GameRoot = CurrentProject.Config.GameRoot;
         Smithbox.ProjectRoot = Path.GetDirectoryName(CurrentProject.ProjectJsonPath);
-        Smithbox.SmithboxDataRoot = $"{Smithbox.ProjectRoot}\\.smithbox";
+        Smithbox.SmithboxDataRoot = $"{Smithbox.ProjectRoot}/.smithbox";
     }
 
     public void AddProjectToRecentList(Project targetProject)
@@ -397,8 +397,8 @@ public class ProjectHandler
         {
             var usrDir = Path.GetDirectoryName(exePath);
             var gameDir = Path.GetDirectoryName(usrDir);
-            var sfoPath = $@"{gameDir}\PARAM.SFO";
-            if (Directory.Exists($@"{usrDir}\dvdroot_ps4"))
+            var sfoPath = $@"{gameDir}/PARAM.SFO";
+            if (Directory.Exists($@"{usrDir}/dvdroot_ps4"))
             {
                 type = ProjectType.BB;
             }
@@ -574,7 +574,7 @@ public class ProjectHandler
         {
             var time = DateTime.Now.ToString("dd-MM-yyyy-(hh-mm-ss)", CultureInfo.InvariantCulture);
 
-            Smithbox.ProjectRoot = Smithbox.ProjectRoot + $@"\recovery\{time}";
+            Smithbox.ProjectRoot = Smithbox.ProjectRoot + $@"/recovery/{time}";
 
             if (!Directory.Exists(Smithbox.ProjectRoot))
             {

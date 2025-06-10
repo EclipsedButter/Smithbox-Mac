@@ -74,24 +74,24 @@ public static class ParticleBank
 
         FileBank = new();
 
-        var fileDir = @"\sfx";
+        var fileDir = @"/sfx";
         var fileExt = @".ffxbnd.dcx";
 
         List<string> fileNames = MiscLocator.GetParticleBinders();
 
         foreach (var name in fileNames)
         {
-            var filePath = $"{fileDir}\\{name}{fileExt}";
+            var filePath = $"{fileDir}/{name}{fileExt}";
 
             var realPath = "";
 
-            if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+            if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
             {
-                realPath = $"{Smithbox.ProjectRoot}\\{filePath}";
+                realPath = $"{Smithbox.ProjectRoot}/{filePath}";
             }
             else
             {
-                realPath = $"{Smithbox.GameRoot}\\{filePath}";
+                realPath = $"{Smithbox.GameRoot}/{filePath}";
             }
 
             if (realPath != "")
@@ -192,7 +192,7 @@ public static class ParticleBank
 
         //TaskLogs.AddLog($"SaveParticle: {info.Path}");
 
-        var fileDir = @"\sfx";
+        var fileDir = @"/sfx";
         var fileExt = @".ffxbnd.dcx";
 
         // Enter parent binder and then write the current particle's data
@@ -204,8 +204,8 @@ public static class ParticleBank
         BND4 writeBinder = parent.Binder as BND4;
         byte[] fileBytes = null;
 
-        var assetRoot = $@"{Smithbox.GameRoot}\{fileDir}\{info.Name}{fileExt}";
-        var assetMod = $@"{Smithbox.ProjectRoot}\{fileDir}\{info.Name}{fileExt}";
+        var assetRoot = $@"{Smithbox.GameRoot}/{fileDir}/{info.Name}{fileExt}";
+        var assetMod = $@"{Smithbox.ProjectRoot}/{fileDir}/{info.Name}{fileExt}";
 
         switch (Smithbox.ProjectType)
         {
@@ -227,9 +227,9 @@ public static class ParticleBank
         }
 
         // Add folder if it does not exist in GameModDirectory
-        if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{fileDir}\\"))
+        if (!Directory.Exists($"{Smithbox.ProjectRoot}/{fileDir}/"))
         {
-            Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{fileDir}\\");
+            Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{fileDir}/");
         }
 
         // Make a backup of the original file if a mod path doesn't exist
@@ -254,7 +254,7 @@ public static class ParticleBank
 
         //TaskLogs.AddLog($"SaveParticle: {info.Path}");
 
-        var fileDir = @"\sfx";
+        var fileDir = @"/sfx";
         var fileExt = @".ffxbnd.dcx";
 
         // Enter parent binder and then write the current resource list data
@@ -269,8 +269,8 @@ public static class ParticleBank
         BND4 writeBinder = parent.Binder as BND4;
         byte[] fileBytes = null;
 
-        var assetRoot = $@"{Smithbox.GameRoot}\{fileDir}\{info.Name}{fileExt}";
-        var assetMod = $@"{Smithbox.ProjectRoot}\{fileDir}\{info.Name}{fileExt}";
+        var assetRoot = $@"{Smithbox.GameRoot}/{fileDir}/{info.Name}{fileExt}";
+        var assetMod = $@"{Smithbox.ProjectRoot}/{fileDir}/{info.Name}{fileExt}";
 
         switch (Smithbox.ProjectType)
         {
@@ -292,9 +292,9 @@ public static class ParticleBank
         }
 
         // Add folder if it does not exist in GameModDirectory
-        if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{fileDir}\\"))
+        if (!Directory.Exists($"{Smithbox.ProjectRoot}/{fileDir}/"))
         {
-            Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{fileDir}\\");
+            Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{fileDir}/");
         }
 
         // Make a backup of the original file if a mod path doesn't exist

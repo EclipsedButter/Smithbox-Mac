@@ -130,16 +130,16 @@ public static class EmevdBank
                 return;
         }
 
-        var paramDir = @"\event\";
+        var paramDir = @"/event/";
         var paramExt = @".emevd.dcx";
 
-        var assetRoot = $@"{Smithbox.GameRoot}\{paramDir}\{info.Name}{paramExt}";
-        var assetMod = $@"{Smithbox.ProjectRoot}\{paramDir}\{info.Name}{paramExt}";
+        var assetRoot = $@"{Smithbox.GameRoot}/{paramDir}/{info.Name}{paramExt}";
+        var assetMod = $@"{Smithbox.ProjectRoot}/{paramDir}/{info.Name}{paramExt}";
 
         // Add drawparam folder if it does not exist in GameModDirectory
-        if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{paramDir}\\"))
+        if (!Directory.Exists($"{Smithbox.ProjectRoot}/{paramDir}/"))
         {
-            Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{paramDir}\\");
+            Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{paramDir}/");
         }
 
         // Make a backup of the original file if a mod path doesn't exist
@@ -162,21 +162,21 @@ public static class EmevdBank
         var dir = Smithbox.GameRoot;
         var mod = Smithbox.ProjectRoot;
 
-        if (!File.Exists($@"{dir}\enc_regulation.bnd.dcx"))
+        if (!File.Exists($@"{dir}/enc_regulation.bnd.dcx"))
         {
             TaskLogs.AddLog("Cannot locate regulation. Save failed.", LogLevel.Error, LogPriority.High);
             return;
         }
 
-        var regulation = $@"{mod}\enc_regulation.bnd.dcx";
+        var regulation = $@"{mod}/enc_regulation.bnd.dcx";
         BND4 emevdBnd;
 
         if (!File.Exists(regulation))
         {
             // If there is no mod file, check the base file. Decrypt it if you have to.
-            regulation = $@"{dir}\enc_regulation.bnd.dcx";
+            regulation = $@"{dir}/enc_regulation.bnd.dcx";
 
-            if (!BND4.Is($@"{dir}\enc_regulation.bnd.dcx"))
+            if (!BND4.Is($@"{dir}/enc_regulation.bnd.dcx"))
             {
                 // Decrypt the file
                 emevdBnd = SFUtil.DecryptDS2Regulation(regulation);
@@ -238,7 +238,7 @@ public static class EmevdBank
 
         ScriptBank = new();
 
-        var paramDir = @"\event";
+        var paramDir = @"/event";
         var paramExt = @".emevd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
@@ -251,16 +251,16 @@ public static class EmevdBank
 
             foreach (var name in paramNames)
             {
-                var filePath = $"{paramDir}\\{name}{paramExt}";
+                var filePath = $"{paramDir}/{name}{paramExt}";
 
-                if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+                if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
                 {
-                    LoadEventScript($"{Smithbox.ProjectRoot}\\{filePath}");
+                    LoadEventScript($"{Smithbox.ProjectRoot}/{filePath}");
                     //TaskLogs.AddLog($"Loaded from GameModDirectory: {filePath}");
                 }
                 else
                 {
-                    LoadEventScript($"{Smithbox.GameRoot}\\{filePath}");
+                    LoadEventScript($"{Smithbox.GameRoot}/{filePath}");
                     //TaskLogs.AddLog($"Loaded from GameRootDirectory: {filePath}");
                 }
             }
@@ -310,10 +310,10 @@ public static class EmevdBank
         var dir = Smithbox.GameRoot;
         var mod = Smithbox.ProjectRoot;
 
-        var regulationPath = $@"{mod}\enc_regulation.bnd.dcx";
+        var regulationPath = $@"{mod}/enc_regulation.bnd.dcx";
         if (!File.Exists(regulationPath))
         {
-            regulationPath = $@"{dir}\enc_regulation.bnd.dcx";
+            regulationPath = $@"{dir}/enc_regulation.bnd.dcx";
         }
 
         BND4 emevdBnd = null;

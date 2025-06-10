@@ -126,7 +126,7 @@ public class ToolWindow
                     {
                         if (Smithbox.ProjectType != ProjectType.Undefined)
                         {
-                            var dir = $"{Smithbox.ProjectRoot}\\.smithbox\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Names";
+                            var dir = $"{Smithbox.ProjectRoot}/.smithbox/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Names";
                             Process.Start("explorer.exe", dir);
                         }
                     }
@@ -159,7 +159,7 @@ public class ToolWindow
                     {
                         if (Smithbox.ProjectType != ProjectType.Undefined)
                         {
-                            var dir = $"{Smithbox.ProjectRoot}\\.smithbox\\Assets\\Paramdex\\{MiscLocator.GetGameIDForDir()}\\Names";
+                            var dir = $"{Smithbox.ProjectRoot}/.smithbox/Assets/Paramdex/{MiscLocator.GetGameIDForDir()}/Names";
                             Process.Start("explorer.exe", dir);
                         }
                     }
@@ -458,7 +458,7 @@ public class ToolWindow
                 ImGui.SameLine();
                 if (ImGui.Button("Open Script Folder", halfButtonSize))
                 {
-                    var projectScriptDir = $"{Smithbox.ProjectRoot}\\.smithbox\\Assets\\MassEditScripts\\";
+                    var projectScriptDir = $"{Smithbox.ProjectRoot}/.smithbox/Assets/MassEditScripts/";
 
                     Process.Start("explorer.exe", projectScriptDir);
                 }

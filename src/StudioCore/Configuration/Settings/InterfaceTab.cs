@@ -101,8 +101,8 @@ public class InterfaceTab
 
             if (ImGui.Button("Restore Default Fonts"))
             {
-                UI.Current.System_English_Font = "Assets\\Fonts\\RobotoMono-Light.ttf";
-                UI.Current.System_Other_Font = "Assets\\Fonts\\NotoSansCJKtc-Light.otf";
+                UI.Current.System_English_Font = "Assets/Fonts/RobotoMono-Light.ttf";
+                UI.Current.System_Other_Font = "Assets/Fonts/NotoSansCJKtc-Light.otf";
                 Smithbox.FontRebuildRequest = true;
             }
         }
@@ -148,7 +148,7 @@ public class InterfaceTab
             ImGui.SameLine();
             if (ImGui.Button("Open Theme Folder"))
             {
-                Process.Start("explorer.exe", $"{AppContext.BaseDirectory}\\Assets\\Themes\\");
+                Process.Start("explorer.exe", $"{AppContext.BaseDirectory}/Assets/Themes/");
             }
             ImGui.SameLine();
 

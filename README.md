@@ -16,14 +16,14 @@ Smithbox is a modding tool for Elden Ring, Armored Core VI, Sekiro, Dark Souls 3
 - Texture Viewer: a simple to use viewer for looking and extracting textures.
 
 ## Requirements
-* Windows 7/8/8.1/10/11 (64-bit only)
-* [Visual C++ Redistributable x64](https://aka.ms/vs/16/release/vc_redist.x64.exe)
-* For the error message "You must install or update .NET to run this application", use these exact download links. It is not enough to install the default .NET runtime.
-  * [Microsoft .NET Core 7.0 Desktop Runtime](https://aka.ms/dotnet/7.0/windowsdesktop-runtime-win-x64.exe)
-  * [Microsoft .NET Core 7.0 ASP.NET Core Runtime](https://aka.ms/dotnet/7.0/aspnetcore-runtime-win-x64.exe)
-* A Vulkan 1.3 compatible graphics card with up to date graphics drivers: NVIDIA Maxwell (900 series) and newer or AMD Polaris (Radeon 400 series) and newer
-* Intel GPUs currently don't seem to be working properly. At the moment you will need a dedicated NVIDIA or AMD GPU
+* macOS 15 or later (64-bit only)
+* M-series Apple Silicon processor
 * A 4GB (8GB recommended) of VRAM if modding DS3/BB/Sekiro/ER maps due to huge map sizes
+
+## Libraries
+* [MoltenVK](https://github.com/KhronosGroup/MoltenVK) 1.2.11
+* [zstd](https://github.com/facebook/zstd) 1.5.7
+* Missing libraries must be placed in the program directory, or on a library search path. If using a package manager such as Homebrew, ensure that libraries on the system are referenced before libraries on brew.
 
 ## Usage Instructions
 #### Dark Souls: Prepare to Die Edition

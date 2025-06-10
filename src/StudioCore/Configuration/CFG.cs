@@ -750,17 +750,17 @@ public class CFG
 
     public static string GetConfigFilePath()
     {
-        return $@"{GetConfigFolderPath()}\{Config_FileName}";
+        return $@"{GetConfigFolderPath()}/{Config_FileName}";
     }
 
     public static string GetBindingsFilePath()
     {
-        return $@"{GetConfigFolderPath()}\{Keybinds_FileName}";
+        return $@"{GetConfigFolderPath()}/{Keybinds_FileName}";
     }
 
     public static string GetConfigFolderPath()
     {
-        return $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\{FolderName}";
+        return $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/{FolderName}";
     }
 
     private static void LoadConfig()

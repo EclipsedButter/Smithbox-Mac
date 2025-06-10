@@ -39,7 +39,7 @@ public class PrefabEditor
 
     Prefab GetLoadedPrefab(string name)
     {
-        var prefabPath = $@"{prefabDir}\{name}.json";
+        var prefabPath = $@"{prefabDir}/{name}.json";
         var loadedPrefab = loadedPrefabs.GetValueOrDefault(name);
 
         if (loadedPrefab is not null)
@@ -65,7 +65,7 @@ public class PrefabEditor
         }
         var newPrefab = Prefab.New(Smithbox.ProjectType);
 
-        newPrefab.ExportSelection($@"{prefabDir}\{name}.json", name, editFlags, universe.Selection);
+        newPrefab.ExportSelection($@"{prefabDir}/{name}.json", name, editFlags, universe.Selection);
 
         prefabs.Add(name, newPrefab);
         selectedPrefab = newPrefab;
@@ -75,7 +75,7 @@ public class PrefabEditor
     void Delete(string name)
     {
         prefabs.Remove(name);
-        File.Delete($@"{prefabDir}\{name}.json");
+        File.Delete($@"{prefabDir}/{name}.json");
     }
 
     void CreateButton(Vector2 buttonSize)
@@ -325,7 +325,7 @@ public class PrefabEditor
     public void RefreshPrefabList()
     {
         prefabs = new();
-        prefabDir = $"{Smithbox.ProjectRoot}\\.smithbox\\{MiscLocator.GetGameIDForDir()}\\prefabs\\";
+        prefabDir = $"{Smithbox.ProjectRoot}/.smithbox/{MiscLocator.GetGameIDForDir()}/prefabs/";
         if (!Directory.Exists(prefabDir))
         {
             try { Directory.CreateDirectory(prefabDir); } catch { }

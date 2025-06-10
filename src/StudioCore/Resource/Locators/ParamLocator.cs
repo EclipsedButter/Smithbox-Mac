@@ -13,15 +13,15 @@ public static class ParamLocator
     internal static ResourceDescriptor GetDS2Param(string paramStr, string appendStr, string mapid, bool writemode = false)
     {
         ResourceDescriptor ad = new();
-        var path = $@"Param\{paramStr}_{mapid}";
+        var path = $@"Param/{paramStr}_{mapid}";
 
-        if (Smithbox.ProjectRoot != null && File.Exists($@"{Smithbox.ProjectRoot}\{path}.param") || writemode && Smithbox.ProjectRoot != null)
+        if (Smithbox.ProjectRoot != null && File.Exists($@"{Smithbox.ProjectRoot}/{path}.param") || writemode && Smithbox.ProjectRoot != null)
         {
-            ad.AssetPath = $@"{Smithbox.ProjectRoot}\{path}.param";
+            ad.AssetPath = $@"{Smithbox.ProjectRoot}/{path}.param";
         }
-        else if (File.Exists($@"{Smithbox.GameRoot}\{path}.param"))
+        else if (File.Exists($@"{Smithbox.GameRoot}/{path}.param"))
         {
-            ad.AssetPath = $@"{Smithbox.GameRoot}\{path}.param";
+            ad.AssetPath = $@"{Smithbox.GameRoot}/{path}.param";
         }
 
         ad.AssetName = mapid + $"_{appendStr}";
@@ -61,41 +61,41 @@ public static class ParamLocator
 
     public static PARAMDEF GetParamdefForParam(string paramType)
     {
-        var pd = PARAMDEF.XmlDeserialize($@"{GetParamdefDir()}\{paramType}.xml");
+        var pd = PARAMDEF.XmlDeserialize($@"{GetParamdefDir()}/{paramType}.xml");
 
         return pd;
     }
 
     public static string GetUpgraderAssetsDir()
     {
-        return $@"{GetParamAssetsDir()}\Upgrader";
+        return $@"{GetParamAssetsDir()}/Upgrader";
     }
 
     public static string GetGameOffsetsAssetsDir()
     {
-        return $@"Assets\GameOffsets\{MiscLocator.GetGameIDForDir()}";
+        return $@"Assets/GameOffsets/{MiscLocator.GetGameIDForDir()}";
     }
 
     public static string GetParamAssetsDir()
     {
-        return $@"Assets\Paramdex\{MiscLocator.GetGameIDForDir()}";
+        return $@"Assets/Paramdex/{MiscLocator.GetGameIDForDir()}";
     }
 
     public static string GetParamdefDir()
     {
-        return $@"{GetParamAssetsDir()}\Defs";
+        return $@"{GetParamAssetsDir()}/Defs";
     }
 
     public static string GetTentativeParamTypePath()
     {
-        return $@"{GetParamAssetsDir()}\Defs\TentativeParamType.csv";
+        return $@"{GetParamAssetsDir()}/Defs/TentativeParamType.csv";
     }
 
     public static ulong[] GetParamdefPatches()
     {
-        if (Directory.Exists($@"{GetParamAssetsDir()}\DefsPatch"))
+        if (Directory.Exists($@"{GetParamAssetsDir()}/DefsPatch"))
         {
-            var entries = Directory.GetFileSystemEntries($@"{GetParamAssetsDir()}\DefsPatch");
+            var entries = Directory.GetFileSystemEntries($@"{GetParamAssetsDir()}/DefsPatch");
             return entries.Select(e => ulong.Parse(Path.GetFileNameWithoutExtension(e))).ToArray();
         }
 
@@ -104,33 +104,33 @@ public static class ParamLocator
 
     public static string GetParamdefPatchDir(ulong patch)
     {
-        return $@"{GetParamAssetsDir()}\DefsPatch\{patch}";
+        return $@"{GetParamAssetsDir()}/DefsPatch/{patch}";
     }
 
     public static string GetParammetaDir()
     {
-        return $@"{GetParamAssetsDir()}\Meta";
+        return $@"{GetParamAssetsDir()}/Meta";
     }
 
     public static string GetParamNamesDir()
     {
-        return $@"{GetParamAssetsDir()}\Names";
+        return $@"{GetParamAssetsDir()}/Names";
     }
 
     public static string GetStrippedRowNamesPath(string paramName)
     {
-        var dir = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Stripped Row Names";
+        var dir = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Stripped Row Names";
 
-        return $@"{dir}\{paramName}.txt";
+        return $@"{dir}/{paramName}.txt";
     }
 
     public static string GetMassEditScriptCommonDir()
     {
-        return @"Assets\MassEditScripts\Common";
+        return @"Assets/MassEditScripts/Common";
     }
 
     public static string GetMassEditScriptGameDir()
     {
-        return $@"Assets\MassEditScripts\{MiscLocator.GetGameIDForDir()}";
+        return $@"Assets/MassEditScripts/{MiscLocator.GetGameIDForDir()}";
     }
 }

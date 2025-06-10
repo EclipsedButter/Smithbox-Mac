@@ -157,8 +157,8 @@ public class Smithbox
 
     private unsafe void SetupFonts()
     {
-        string engFont = @"Assets\Fonts\RobotoMono-Light.ttf";
-        string otherFont = @"Assets\Fonts\NotoSansCJKtc-Light.otf";
+        string engFont = @"Assets/Fonts/RobotoMono-Light.ttf";
+        string otherFont = @"Assets/Fonts/NotoSansCJKtc-Light.otf";
 
         if (!string.IsNullOrWhiteSpace(UI.Current.System_English_Font) && File.Exists(UI.Current.System_English_Font))
             engFont = UI.Current.System_English_Font;
@@ -176,7 +176,7 @@ public class Smithbox
         var fontOtherNative = ImGui.MemAlloc((uint)fontOther.Length);
         Marshal.Copy(fontOther, 0, fontOtherNative, fontOther.Length);
 
-        var fileIcon = Path.Combine(AppContext.BaseDirectory, @"Assets\Fonts\forkawesome-webfont.ttf");
+        var fileIcon = Path.Combine(AppContext.BaseDirectory, @"Assets/Fonts/forkawesome-webfont.ttf");
         var fontIcon = File.ReadAllBytes(fileIcon);
         var fontIconNative = ImGui.MemAlloc((uint)fontIcon.Length);
         Marshal.Copy(fontIcon, 0, fontIconNative, fontIcon.Length);
@@ -236,7 +236,7 @@ public class Smithbox
             }
 
             glyphRanges.BuildRanges(out ImVector glyphRange);
-            fonts.AddFontFromMemoryTTF(fontOtherNative, fontOther.Length, (float)Math.Round((UI.Current.Interface_FontSize + 2) * scale), cfg, glyphRange.Data);
+            fonts.AddFontFromMemoryTTF(fontOtherNative, fontOther.Length, (float)Math.Round((UI.Current.Interface_FontSize + 2) * scale / 4), cfg, glyphRange.Data); //! NotoSansJP too big
             glyphRanges.Destroy();
         }
 

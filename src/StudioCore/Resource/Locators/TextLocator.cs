@@ -25,7 +25,7 @@ public static class TextLocator
             targetDir = Smithbox.GameRoot;
         }
 
-        var rootPath = $"{targetDir}\\msg\\";
+        var rootPath = $"{targetDir}/msg/";
         var filePattern = $".msgbnd";
 
         if (Directory.Exists(rootPath))
@@ -48,7 +48,7 @@ public static class TextLocator
             targetDir = Smithbox.GameRoot;
         }
 
-        var rootPath = $"{targetDir}\\{dir}";
+        var rootPath = $"{targetDir}/{dir}";
         var filePattern = $".fmg";
 
         if (Directory.Exists(rootPath))
@@ -99,7 +99,7 @@ public static class TextLocator
 
     public static string GetStoredTextDirectory()
     {
-        return $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Exported Text";
+        return $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Exported Text";
     }
 
     public static List<string> GetStoredContainerWrappers()

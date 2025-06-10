@@ -14,7 +14,7 @@ public class GxDescriptorBank
 {
     private ModelEditorScreen Screen;
 
-    private string DescriptorPath = $"{Smithbox.SmithboxDataRoot}\\GX Items\\GXItemDescriptors.json";
+    private string DescriptorPath = $"{Smithbox.SmithboxDataRoot}/GX Items/GXItemDescriptors.json";
 
     public GXDescriptorList Descriptors = new GXDescriptorList();
 

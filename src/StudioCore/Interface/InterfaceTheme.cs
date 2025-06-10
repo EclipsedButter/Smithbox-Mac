@@ -120,7 +120,7 @@ namespace StudioCore.Interface
         {
             LoadedThemes = new Dictionary<int, InterfaceThemeConfig>();
 
-            var files = Directory.GetFiles($"{AppContext.BaseDirectory}\\Assets\\Themes\\");
+            var files = Directory.GetFiles($"{AppContext.BaseDirectory}/Assets/Themes/");
             int idx = 0;
 
             LoadedThemeNames = new string[files.Length];
@@ -168,7 +168,7 @@ namespace StudioCore.Interface
                 return;
             }
 
-            var path = $"{AppContext.BaseDirectory}\\Assets\\Themes\\{fileName}.json";
+            var path = $"{AppContext.BaseDirectory}/Assets/Themes/{fileName}.json";
 
             if (File.Exists(path))
             {

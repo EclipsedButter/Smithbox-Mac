@@ -70,8 +70,8 @@ public static class HavokCollisionManager
         bool isValid = false;
         byte[] CompendiumBytes = null;
 
-        var bdtPath = $"{Smithbox.GameRoot}\\map\\{mapId.Substring(0, 3)}\\{mapId}\\{type}{mapId.Substring(1)}.hkxbdt";
-        var bhdPath = $"{Smithbox.GameRoot}\\map\\{mapId.Substring(0, 3)}\\{mapId}\\{type}{mapId.Substring(1)}.hkxbhd";
+        var bdtPath = $"{Smithbox.GameRoot}/map/{mapId.Substring(0, 3)}/{mapId}/{type}{mapId.Substring(1)}.hkxbdt";
+        var bhdPath = $"{Smithbox.GameRoot}/map/{mapId.Substring(0, 3)}/{mapId}/{type}{mapId.Substring(1)}.hkxbhd";
 
         // If game root version exists, mark as valid
         if (File.Exists(bdtPath) && File.Exists(bhdPath))
@@ -80,8 +80,8 @@ public static class HavokCollisionManager
         }
 
         // If project version exists, point path to that instead, and mark as valid
-        var projectBdtPath = $"{Smithbox.ProjectRoot}\\map\\{mapId.Substring(0, 3)}\\{mapId}\\{type}{mapId.Substring(1)}.hkxbdt";
-        var projectBhdPath = $"{Smithbox.ProjectRoot}\\map\\{mapId.Substring(0, 3)}\\{mapId}\\{type}{mapId.Substring(1)}.hkxbhd";
+        var projectBdtPath = $"{Smithbox.ProjectRoot}/map/{mapId.Substring(0, 3)}/{mapId}/{type}{mapId.Substring(1)}.hkxbdt";
+        var projectBhdPath = $"{Smithbox.ProjectRoot}/map/{mapId.Substring(0, 3)}/{mapId}/{type}{mapId.Substring(1)}.hkxbhd";
 
         if (File.Exists(projectBdtPath) && File.Exists(projectBhdPath))
         {
@@ -117,7 +117,7 @@ public static class HavokCollisionManager
             {
                 BinderFileHeader f = file;
 
-                var parts = f.Name.Split('\\');
+                var parts = f.Name.Replace('\\','/').Split('/'); //! unsure
                 if (parts.Length == 2)
                 {
                     var name = parts[1];
@@ -183,7 +183,7 @@ public static class HavokCollisionManager
         // Mark as invalid by default
         bool isValid = false;
 
-        var bndPath = $"{Smithbox.GameRoot}\\asset\\aeg\\{modelName.Substring(0, 6)}\\{modelName}_{colType}.geomhkxbnd.dcx";
+        var bndPath = $"{Smithbox.GameRoot}/asset/aeg/{modelName.Substring(0, 6)}/{modelName}_{colType}.geomhkxbnd.dcx";
 
         // If game root version exists, mark as valid
         if (File.Exists(bndPath))
@@ -192,7 +192,7 @@ public static class HavokCollisionManager
         }
 
         // If project version exists, point path to that instead, and mark as valid
-        var projectBndPath = $"{Smithbox.ProjectRoot}\\asset\\aeg\\{modelName.Substring(0, 6)}\\{modelName}_{colType}.geomhkxbnd.dcx";
+        var projectBndPath = $"{Smithbox.ProjectRoot}/asset/aeg/{modelName.Substring(0, 6)}/{modelName}_{colType}.geomhkxbnd.dcx";
 
         if (File.Exists(projectBndPath))
         {

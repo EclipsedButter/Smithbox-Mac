@@ -88,14 +88,14 @@ public class AliasBank
         if (Smithbox.ProjectType == ProjectType.Undefined)
             return;
 
-        var resourcePath =  $"{Smithbox.SmithboxDataRoot}\\Assets\\Aliases\\{AliasDirectory}\\{MiscLocator.GetGameIDForDir()}\\";
+        var resourcePath =  $"{Smithbox.SmithboxDataRoot}/Assets/Aliases/{AliasDirectory}/{MiscLocator.GetGameIDForDir()}/";
 
         if(CFG.Current.AliasBank_EditorMode)
         {
-            resourcePath = AppContext.BaseDirectory + $"\\Assets\\Aliases\\{AliasDirectory}\\{MiscLocator.GetGameIDForDir()}\\";
+            resourcePath = AppContext.BaseDirectory + $"/Assets/Aliases/{AliasDirectory}/{MiscLocator.GetGameIDForDir()}/";
         }
 
-        var resourceFilePath = $"{resourcePath}\\{AliasFileName}.json";
+        var resourceFilePath = $"{resourcePath}/{AliasFileName}.json";
 
         if (File.Exists(resourceFilePath))
         {
@@ -121,16 +121,16 @@ public class AliasBank
         if (Smithbox.ProjectType == ProjectType.Undefined)
             return;
 
-        var templateResource = AppContext.BaseDirectory + $"\\Assets\\Aliases\\{TemplateName}";
+        var templateResource = AppContext.BaseDirectory + $"/Assets/Aliases/{TemplateName}";
 
-        var resourcePath = $"{Smithbox.SmithboxDataRoot}\\Assets\\Aliases\\{AliasDirectory}\\{MiscLocator.GetGameIDForDir()}\\";
+        var resourcePath = $"{Smithbox.SmithboxDataRoot}/Assets/Aliases/{AliasDirectory}/{MiscLocator.GetGameIDForDir()}/";
 
         if (CFG.Current.AliasBank_EditorMode)
         {
-            resourcePath = AppContext.BaseDirectory + $"\\Assets\\Aliases\\{AliasDirectory}\\{MiscLocator.GetGameIDForDir()}\\";
+            resourcePath = AppContext.BaseDirectory + $"/Assets/Aliases/{AliasDirectory}/{MiscLocator.GetGameIDForDir()}/";
         }
 
-        var resourceFilePath = $"{resourcePath}\\{AliasFileName}.json";
+        var resourceFilePath = $"{resourcePath}/{AliasFileName}.json";
 
         // Create directory/file if they don't exist
         if (!Directory.Exists(resourcePath))
@@ -210,14 +210,14 @@ public class AliasBank
         if (Smithbox.ProjectType == ProjectType.Undefined)
             return;
 
-        var resourcePath = $"{Smithbox.SmithboxDataRoot}\\Assets\\Aliases\\{AliasDirectory}\\{MiscLocator.GetGameIDForDir()}\\";
+        var resourcePath = $"{Smithbox.SmithboxDataRoot}/Assets/Aliases/{AliasDirectory}/{MiscLocator.GetGameIDForDir()}/";
 
         if (CFG.Current.AliasBank_EditorMode)
         {
-            resourcePath = AppContext.BaseDirectory + $"\\Assets\\Aliases\\{AliasDirectory}\\{MiscLocator.GetGameIDForDir()}\\";
+            resourcePath = AppContext.BaseDirectory + $"/Assets/Aliases/{AliasDirectory}/{MiscLocator.GetGameIDForDir()}/";
         }
 
-        var resourceFilePath = $"{resourcePath}\\{AliasFileName}.json";
+        var resourceFilePath = $"{resourcePath}/{AliasFileName}.json";
 
 
         if (File.Exists(resourceFilePath))

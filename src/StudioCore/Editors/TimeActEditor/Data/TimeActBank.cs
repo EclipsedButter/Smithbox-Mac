@@ -199,7 +199,7 @@ public static class TimeActBank
         TimeActTemplates = new();
 
         // Load templates
-        string templateDir = $"{AppContext.BaseDirectory}Assets\\TAE\\";
+        string templateDir = $"{AppContext.BaseDirectory}Assets/TAE/";
         foreach (string file in Directory.EnumerateFiles(templateDir, "*.xml"))
         {
             string name = Path.GetFileNameWithoutExtension(file);
@@ -293,12 +293,12 @@ public static class TimeActBank
     /// </summary>
     public static void LoadChrTimeActs(Dictionary<TimeActContainerWrapper, TimeActBinderWrapper> targetBank, bool rootOnly = false)
     {
-        string fileDir = @"\chr";
+        string fileDir = @"/chr";
         string fileExt = @".anibnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
         {
-            fileDir = @"\timeact\chr";
+            fileDir = @"/timeact/chr";
             fileExt = @".tae";
         }
 
@@ -306,21 +306,21 @@ public static class TimeActBank
 
         foreach (string name in fileNames)
         {
-            string filePath = $"{fileDir}\\{name}{fileExt}";
+            string filePath = $"{fileDir}/{name}{fileExt}";
 
             if (rootOnly)
             {
-                LoadChrTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank);
+                LoadChrTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank);
             }
             else
             {
-                if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+                if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
                 {
-                    LoadChrTimeAct($"{Smithbox.ProjectRoot}\\{filePath}", targetBank);
+                    LoadChrTimeAct($"{Smithbox.ProjectRoot}/{filePath}", targetBank);
                 }
                 else
                 {
-                    LoadChrTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank);
+                    LoadChrTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank);
                 }
             }
         }
@@ -331,28 +331,28 @@ public static class TimeActBank
     /// </summary>
     public static void LoadChrBehaviorTimeActs(Dictionary<TimeActContainerWrapper, TimeActBinderWrapper> targetBank, bool rootOnly = false)
     {
-        string fileDir = @"\chr";
+        string fileDir = @"/chr";
         string fileExt = @".behbnd.dcx";
 
         List<string> fileNames = MiscLocator.GetCharacterBehaviorTimeActBinders();
 
         foreach (string name in fileNames)
         {
-            string filePath = $"{fileDir}\\{name}{fileExt}";
+            string filePath = $"{fileDir}/{name}{fileExt}";
 
             if (rootOnly)
             {
-                LoadChrTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank);
+                LoadChrTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank);
             }
             else
             {
-                if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+                if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
                 {
-                    LoadChrTimeAct($"{Smithbox.ProjectRoot}\\{filePath}", targetBank);
+                    LoadChrTimeAct($"{Smithbox.ProjectRoot}/{filePath}", targetBank);
                 }
                 else
                 {
-                    LoadChrTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank);
+                    LoadChrTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank);
                 }
             }
         }
@@ -363,24 +363,24 @@ public static class TimeActBank
     /// </summary>
     public static void LoadObjTimeActs(Dictionary<TimeActContainerWrapper, TimeActBinderWrapper> targetBank, bool rootOnly = false)
     {
-        string fileDir = @"\obj";
+        string fileDir = @"/obj";
         string fileExt = @".objbnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
         {
-            fileDir = @"\timeact\obj";
+            fileDir = @"/timeact/obj";
             fileExt = @".tae";
         }
 
         if (Smithbox.ProjectType is ProjectType.AC6)
         {
-            fileDir = @"\asset\environment\geometry\";
+            fileDir = @"/asset/environment/geometry/";
             fileExt = @".geombnd.dcx";
         }
 
         if (Smithbox.ProjectType is ProjectType.ER)
         {
-            fileDir = @"\asset\aeg\";
+            fileDir = @"/asset/aeg/";
             fileExt = @".geombnd.dcx";
 
             Dictionary<string, List<string>> assetDict = new();
@@ -397,21 +397,21 @@ public static class TimeActBank
 
                 foreach (string name in files)
                 {
-                    string filePath = $"{fileDir}\\{folder}\\{name}{fileExt}";
+                    string filePath = $"{fileDir}/{folder}/{name}{fileExt}";
 
                     if (rootOnly)
                     {
-                        LoadObjTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank, folder);
+                        LoadObjTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank, folder);
                     }
                     else
                     {
-                        if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+                        if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
                         {
-                            LoadObjTimeAct($"{Smithbox.ProjectRoot}\\{filePath}", targetBank, folder);
+                            LoadObjTimeAct($"{Smithbox.ProjectRoot}/{filePath}", targetBank, folder);
                         }
                         else
                         {
-                            LoadObjTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank, folder);
+                            LoadObjTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank, folder);
                         }
                     }
                 }
@@ -428,21 +428,21 @@ public static class TimeActBank
 
             foreach (string name in fileNames)
             {
-                string filePath = $"{fileDir}\\{name}{fileExt}";
+                string filePath = $"{fileDir}/{name}{fileExt}";
 
                 if (rootOnly)
                 {
-                    LoadObjTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank);
+                    LoadObjTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank);
                 }
                 else
                 {
-                    if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+                    if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
                     {
-                        LoadObjTimeAct($"{Smithbox.ProjectRoot}\\{filePath}", targetBank);
+                        LoadObjTimeAct($"{Smithbox.ProjectRoot}/{filePath}", targetBank);
                     }
                     else
                     {
-                        LoadObjTimeAct($"{Smithbox.GameRoot}\\{filePath}", targetBank);
+                        LoadObjTimeAct($"{Smithbox.GameRoot}/{filePath}", targetBank);
                     }
                 }
             }
@@ -701,20 +701,20 @@ public static class TimeActBank
     /// </summary>
     public static void HandleDS2TimeActSave(TimeActContainerWrapper info, TimeActBinderWrapper binderInfo)
     {
-        string fileDir = @"\timeact\chr";
+        string fileDir = @"/timeact/chr";
         string fileExt = @".tae";
 
         if (info.Path.Contains("obj"))
         {
-            fileDir = @"\timeact\obj";
+            fileDir = @"/timeact/obj";
         }
 
         // Direct file with DS2
         byte[] fileBytes = info.InternalFiles.First().TAE.Write();
 
-        string assetRoot = $@"{Smithbox.GameRoot}\{fileDir}\{info.Name}{fileExt}";
-        string assetMod = $@"{Smithbox.ProjectRoot}\{fileDir}\{info.Name}{fileExt}";
-        string assetModDir = $@"{Smithbox.ProjectRoot}\{fileDir}\";
+        string assetRoot = $@"{Smithbox.GameRoot}/{fileDir}/{info.Name}{fileExt}";
+        string assetMod = $@"{Smithbox.ProjectRoot}/{fileDir}/{info.Name}{fileExt}";
+        string assetModDir = $@"{Smithbox.ProjectRoot}/{fileDir}/";
 
         if (!Directory.Exists(assetModDir))
         {
@@ -778,7 +778,7 @@ public static class TimeActBank
                 int id = int.Parse(tInfo.Name.Substring(1));
 
                 newBinderfile.ID = id;
-                newBinderfile.Name = $"{internalPath}\\{tInfo.Name}.tae";
+                newBinderfile.Name = $"{internalPath}/{tInfo.Name}.tae";
                 newBinderfile.Bytes = tInfo.TAE.Write();
 
                 binder.Files.Add(newBinderfile);
@@ -839,13 +839,13 @@ public static class TimeActBank
             if (binderInfo.ContainerBinder == null)
                 return false;
 
-            var fileDir = @"\chr";
+            var fileDir = @"/chr";
             var fileExt = @".anibnd.dcx";
 
             // Dealing with objbnd
             if (binderInfo.InternalBinder != null)
             {
-                fileDir = @"\obj";
+                fileDir = @"/obj";
                 fileExt = @".objbnd.dcx";
 
                 if (Smithbox.ProjectType is ProjectType.ER)
@@ -856,7 +856,7 @@ public static class TimeActBank
 
                 if (Smithbox.ProjectType is ProjectType.AC6)
                 {
-                    fileDir = @"\asset\environment\geometry\";
+                    fileDir = @"/asset/environment/geometry/";
                     fileExt = @".geombnd.dcx";
                 }
             }
@@ -881,15 +881,15 @@ public static class TimeActBank
 
             byte[] fileBytes = GetBinderBytes(binderInfo.ContainerBinder);
 
-            string assetRoot = $@"{Smithbox.GameRoot}\{fileDir}\{info.Name}{fileExt}";
-            string assetMod = $@"{Smithbox.ProjectRoot}\{fileDir}\{info.Name}{fileExt}";
+            string assetRoot = $@"{Smithbox.GameRoot}/{fileDir}/{info.Name}{fileExt}";
+            string assetMod = $@"{Smithbox.ProjectRoot}/{fileDir}/{info.Name}{fileExt}";
 
             if (fileBytes != null)
             {
                 // Add folder if it does not exist in GameModDirectory
-                if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{fileDir}\\"))
+                if (!Directory.Exists($"{Smithbox.ProjectRoot}/{fileDir}/"))
                 {
-                    Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{fileDir}\\");
+                    Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{fileDir}/");
                 }
 
                 // Make a backup of the original file if a mod path doesn't exist

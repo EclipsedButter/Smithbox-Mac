@@ -89,7 +89,7 @@ public class MassEditHandler
             return;
         }
 
-        var projectScriptDir = $"{Smithbox.ProjectRoot}\\.smithbox\\Assets\\MassEditScripts\\";
+        var projectScriptDir = $"{Smithbox.ProjectRoot}/.smithbox/Assets/MassEditScripts/";
         var scriptPath = $"{projectScriptDir}{_newScriptName}.txt";
 
         // Check both so the name is unique everywhere

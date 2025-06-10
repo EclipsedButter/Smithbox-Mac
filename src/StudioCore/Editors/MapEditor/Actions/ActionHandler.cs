@@ -1256,7 +1256,7 @@ public class ActionHandler
 
     public void ApplyEntityGroupIdChange(string mapid)
     {
-        var filepath = $"{Smithbox.ProjectRoot}\\map\\MapStudio\\{mapid}.msb.dcx";
+        var filepath = $"{Smithbox.ProjectRoot}/map/MapStudio/{mapid}.msb.dcx";
 
         // Armored Core
         if (Smithbox.ProjectType == ProjectType.AC6)

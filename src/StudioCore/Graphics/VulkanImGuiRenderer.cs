@@ -96,7 +96,7 @@ public class VulkanImGuiRenderer : IImguiRenderer, IDisposable
 
         ImGuiIOPtr io = ImGui.GetIO();
         io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
-
+        
         ImGui.GetIO().Fonts.AddFontDefault();
 
         CreateDeviceResources(gd, outputDescription);
@@ -604,10 +604,10 @@ public class VulkanImGuiRenderer : IImguiRenderer, IDisposable
 
         if (draw_data.CmdListsCount > 0)
         {
-            cl.Barrier(VkPipelineStageFlags2.Transfer,
-                VkAccessFlags2.TransferWrite,
-                VkPipelineStageFlags2.VertexInput,
-                VkAccessFlags2.VertexAttributeRead | VkAccessFlags2.IndexRead);
+            cl.Barrier(VkPipelineStageFlags.Transfer,
+                VkAccessFlags.TransferWrite,
+                VkPipelineStageFlags.VertexInput,
+                VkAccessFlags.VertexAttributeRead | VkAccessFlags.IndexRead);
         }
 
         // Setup orthographic projection matrix into our constant buffer

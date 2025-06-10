@@ -18,7 +18,7 @@ public static class ModelColladaExporter
         var path = "";
         var success = false;
 
-        path = $"{ExportPath}\\{screen.ResManager.GetCurrentInternalFile().Name}.dae";
+        path = $"{ExportPath}/{screen.ResManager.GetCurrentInternalFile().Name}.dae";
         success = AssimpExport(screen.ResManager.GetCurrentFLVER(), path, "collada");
 
         if (success)

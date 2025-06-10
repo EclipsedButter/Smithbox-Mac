@@ -58,13 +58,13 @@ public static class Test_BTL_BytePerfect
                     noWrite.Add(file.AssetName);
 
                     var basepath = "Tests";
-                    if (!Directory.Exists($@"{basepath}\mismatches"))
+                    if (!Directory.Exists($@"{basepath}/mismatches"))
                     {
-                        Directory.CreateDirectory($@"{basepath}\mismatches");
+                        Directory.CreateDirectory($@"{basepath}/mismatches");
                     }
 
                     Debug.WriteLine($"Mismatch: {file.AssetName}");
-                    File.WriteAllBytes($@"Tests\\mismatches\{Path.GetFileNameWithoutExtension(file.AssetName)}",
+                    File.WriteAllBytes($@"Tests//mismatches/{Path.GetFileNameWithoutExtension(file.AssetName)}",
                         written);
                 }
             }

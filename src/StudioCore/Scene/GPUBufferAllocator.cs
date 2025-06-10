@@ -19,7 +19,7 @@ public class GPUBufferAllocator
     private readonly ResourceLayout _bufferLayout;
     private readonly ResourceSet _bufferResourceSet;
 
-    private readonly VkAccessFlags2 _dstAccessFlags = VkAccessFlags2.None;
+    private readonly VkAccessFlags _dstAccessFlags = VkAccessFlags.None;
 
     private readonly DeviceBuffer _stagingBuffer;
 
@@ -208,9 +208,9 @@ public class GPUBufferAllocator
                 AllocationStart,
                 AllocationSize);
             cl.BufferBarrier(_allocator._backingBuffer,
-                VkPipelineStageFlags2.Transfer,
-                VkAccessFlags2.TransferWrite,
-                VkPipelineStageFlags2.AllGraphics,
+                VkPipelineStageFlags.Transfer,
+                VkAccessFlags.TransferWrite,
+                VkPipelineStageFlags.AllGraphics,
                 _allocator._dstAccessFlags);
         }
 

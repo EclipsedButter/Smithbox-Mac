@@ -155,27 +155,27 @@ public class MapContainer : ObjectContainer
             m.Models.Add(LoadedModels[name]);
             return;
         }
-
+        //!
         model.Name = name;
         if (model is MSBD.Model.MapPiece)
         {
-            model.SibPath = $@"N:\DemonsSoul\data\Model\map\{Name}\sib\{name}.sib";
+            model.SibPath = $@"N:/DemonsSoul/data/Model/map/{Name}/sib/{name}.sib";
         }
         else if (model is MSBD.Model.Object)
         {
-            model.SibPath = $@"N:\DemonsSoul\data\Model\obj\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/DemonsSoul/data/Model/obj/{name}/sib/{name}.sib";
         }
         else if (model is MSBD.Model.Enemy)
         {
-            model.SibPath = $@"N:\DemonsSoul\data\Model\chr\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/DemonsSoul/data/Model/chr/{name}/sib/{name}.sib";
         }
         else if (model is MSBD.Model.Collision)
         {
-            model.SibPath = $@"N:\DemonsSoul\data\Model\map\{Name}\hkxwin\{name}.hkxwin";
+            model.SibPath = $@"N:/DemonsSoul/data/Model/map/{Name}/hkxwin/{name}.hkxwin";
         }
         else if (model is MSBD.Model.Navmesh)
         {
-            model.SibPath = $@"N:\DemonsSoul\data\Model\map\{Name}\navimesh\{name}.SIB";
+            model.SibPath = $@"N:/DemonsSoul/data/Model/map/{Name}/navimesh/{name}.SIB";
         }
 
         m.Models.Add(model);
@@ -192,23 +192,23 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSB1.Model.MapPiece)
         {
-            model.SibPath = $@"N:\FRPG\data\Model\map\{Name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FRPG/data/Model/map/{Name}/sib/{name}.sib";
         }
         else if (model is MSB1.Model.Object)
         {
-            model.SibPath = $@"N:\FRPG\data\Model\obj\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FRPG/data/Model/obj/{name}/sib/{name}.sib";
         }
         else if (model is MSB1.Model.Enemy)
         {
-            model.SibPath = $@"N:\FRPG\data\Model\chr\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FRPG/data/Model/chr/{name}/sib/{name}.sib";
         }
         else if (model is MSB1.Model.Collision)
         {
-            model.SibPath = $@"N:\FRPG\data\Model\map\{Name}\hkxwin\{name}.hkxwin";
+            model.SibPath = $@"N:/FRPG/data/Model/map/{Name}/hkxwin/{name}.hkxwin";
         }
         else if (model is MSB1.Model.Navmesh)
         {
-            model.SibPath = $@"N:\FRPG\data\Model\map\{Name}\navimesh\{name}.sib";
+            model.SibPath = $@"N:/FRPG/data/Model/map/{Name}/navimesh/{name}.sib";
         }
 
         m.Models.Add(model);
@@ -238,11 +238,11 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSBB.Model.MapPiece)
         {
-            model.SibPath = $@"N:\SPRJ\data\Model\map\{Name}\sib\{name}{a}.sib";
+            model.SibPath = $@"N:/SPRJ/data/Model/map/{Name}/sib/{name}{a}.sib";
         }
         else if (model is MSBB.Model.Object)
         {
-            model.SibPath = $@"N:\SPRJ\data\Model\obj\{name.Substring(0, 3)}\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/SPRJ/data/Model/obj/{name.Substring(0, 3)}/{name}/sib/{name}.sib";
         }
         else if (model is MSBB.Model.Enemy)
         {
@@ -250,20 +250,20 @@ public class MapContainer : ObjectContainer
             // will write identical to the original byte for byte
             if (name == "c0000")
             {
-                model.SibPath = $@"N:\SPRJ\data\Model\chr\{name}\sib\{name}.SIB";
+                model.SibPath = $@"N:/SPRJ/data/Model/chr/{name}/sib/{name}.SIB";
             }
             else
             {
-                model.SibPath = $@"N:\SPRJ\data\Model\chr\{name}\sib\{name}.sib";
+                model.SibPath = $@"N:/SPRJ/data/Model/chr/{name}/sib/{name}.sib";
             }
         }
         else if (model is MSBB.Model.Collision)
         {
-            model.SibPath = $@"N:\SPRJ\data\Model\map\{Name}\hkt\{name}{a}.hkt";
+            model.SibPath = $@"N:/SPRJ/data/Model/map/{Name}/hkt/{name}{a}.hkt";
         }
         else if (model is MSBB.Model.Navmesh)
         {
-            model.SibPath = $@"N:\SPRJ\data\Model\map\{Name}\navimesh\{name}{a}.sib";
+            model.SibPath = $@"N:/SPRJ/data/Model/map/{Name}/navimesh/{name}{a}.sib";
         }
         else if (model is MSBB.Model.Other)
         {
@@ -284,19 +284,19 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSB3.Model.MapPiece)
         {
-            model.SibPath = $@"N:\FDP\data\Model\map\{Name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FDP/data/Model/map/{Name}/sib/{name}.sib";
         }
         else if (model is MSB3.Model.Object)
         {
-            model.SibPath = $@"N:\FDP\data\Model\obj\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FDP/data/Model/obj/{name}/sib/{name}.sib";
         }
         else if (model is MSB3.Model.Enemy)
         {
-            model.SibPath = $@"N:\FDP\data\Model\chr\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FDP/data/Model/chr/{name}/sib/{name}.sib";
         }
         else if (model is MSB3.Model.Collision)
         {
-            model.SibPath = $@"N:\FDP\data\Model\map\{Name}\hkt\{name}.hkt";
+            model.SibPath = $@"N:/FDP/data/Model/map/{Name}/hkt/{name}.hkt";
         }
         else if (model is MSB3.Model.Other)
         {
@@ -317,19 +317,19 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSBS.Model.MapPiece)
         {
-            model.SibPath = $@"N:\FDP\data\Model\map\{Name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FDP/data/Model/map/{Name}/sib/{name}.sib";
         }
         else if (model is MSBS.Model.Object)
         {
-            model.SibPath = $@"N:\FDP\data\Model\obj\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FDP/data/Model/obj/{name}/sib/{name}.sib";
         }
         else if (model is MSBS.Model.Enemy)
         {
-            model.SibPath = $@"N:\FDP\data\Model\chr\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/FDP/data/Model/chr/{name}/sib/{name}.sib";
         }
         else if (model is MSBS.Model.Collision)
         {
-            model.SibPath = $@"N:\FDP\data\Model\map\{Name}\hkt\{name}.hkt";
+            model.SibPath = $@"N:/FDP/data/Model/map/{Name}/hkt/{name}.hkt";
         }
         else if (model is MSBS.Model.Player)
         {
@@ -350,23 +350,23 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSBE.Model.MapPiece)
         {
-            model.SibPath = $@"N:\GR\data\Model\map\{Name}\sib\{name}.sib";
+            model.SibPath = $@"N:/GR/data/Model/map/{Name}/sib/{name}.sib";
         }
         else if (model is MSBE.Model.Asset)
         {
-            model.SibPath = $@"N:\GR\data\Asset\Environment\geometry\{name.Substring(0, 6)}\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/GR/data/Asset/Environment/geometry/{name.Substring(0, 6)}/{name}/sib/{name}.sib";
         }
         else if (model is MSBE.Model.Enemy)
         {
-            model.SibPath = $@"N:\GR\data\Model\chr\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/GR/data/Model/chr/{name}/sib/{name}.sib";
         }
         else if (model is MSBE.Model.Collision)
         {
-            model.SibPath = $@"N:\GR\data\Model\map\{Name}\hkt\{name}.hkt";
+            model.SibPath = $@"N:/GR/data/Model/map/{Name}/hkt/{name}.hkt";
         }
         else if (model is MSBE.Model.Player)
         {
-            model.SibPath = $@"N:\GR\data\Model\chr\{name}\sib\{name}.sib";
+            model.SibPath = $@"N:/GR/data/Model/chr/{name}/sib/{name}.sib";
         }
 
         m.Models.Add(model);
@@ -383,23 +383,23 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSB_AC6.Model.MapPiece)
         {
-            model.SourcePath = $@"N:\FNR\data\Model\map\{Name}\sib\{name}.sib";
+            model.SourcePath = $@"N:/FNR/data/Model/map/{Name}/sib/{name}.sib";
         }
         else if (model is MSB_AC6.Model.Asset)
         {
-            model.SourcePath = $@"N:\FNR\data\Asset\Environment\geometry\{name.Substring(0, 6)}\{name}\sib\{name}.sib";
+            model.SourcePath = $@"N:/FNR/data/Asset/Environment/geometry/{name.Substring(0, 6)}/{name}/sib/{name}.sib";
         }
         else if (model is MSB_AC6.Model.Enemy)
         {
-            model.SourcePath = $@"N:\FNR\data\Model\chr\{name}\sib\{name}.sib";
+            model.SourcePath = $@"N:/FNR/data/Model/chr/{name}/sib/{name}.sib";
         }
         else if (model is MSB_AC6.Model.Collision)
         {
-            model.SourcePath = $@"N:\FNR\data\Model\map\{Name}\hkt\{name}.hkt";
+            model.SourcePath = $@"N:/FNR/data/Model/map/{Name}/hkt/{name}.hkt";
         }
         else if (model is MSB_AC6.Model.Player)
         {
-            model.SourcePath = $@"N:\FNR\data\Model\chr\{name}\sib\{name}.sib";
+            model.SourcePath = $@"N:/FNR/data/Model/chr/{name}/sib/{name}.sib";
         }
 
         m.Models.Add(model);
@@ -416,19 +416,19 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSBFA.Model.MapPiece)
         {
-            model.ResourcePath = $@"N:\AC45\data\model\map\{name}\model_sib\{name}.SIB";
+            model.ResourcePath = $@"N:/AC45/data/model/map/{name}/model_sib/{name}.SIB";
         }
         else if (model is MSBFA.Model.Object)
         {
-            model.ResourcePath = $@"N:\AC45\data\model\obj\{name}\model_sib\{name}.SIB";
+            model.ResourcePath = $@"N:/AC45/data/model/obj/{name}/model_sib/{name}.SIB";
         }
         else if (model is MSBFA.Model.Enemy)
         {
-            model.ResourcePath = $@"N:\AC45\data\model\ene\{name}\model_sib\{name}.SIB";
+            model.ResourcePath = $@"N:/AC45/data/model/ene/{name}/model_sib/{name}.SIB";
         }
         else if (model is MSBFA.Model.Dummy)
         {
-            model.ResourcePath = $@"N:\AC45\data\model\dummy\dummy_ac\{name}.ap2";
+            model.ResourcePath = $@"N:/AC45/data/model/dummy/dummy_ac/{name}.ap2";
         }
 
         m.Models.Add(model);
@@ -445,19 +445,19 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSBV.Model.MapPiece)
         {
-            model.ResourcePath = $@"N:\ACV\data\model\map\{name}\model_sib\{name}.sib";
+            model.ResourcePath = $@"N:/ACV/data/model/map/{name}/model_sib/{name}.sib";
         }
         else if (model is MSBV.Model.Object)
         {
-            model.ResourcePath = $@"N:\ACV\data\model\obj\{name}\model_sib\{name}.sib";
+            model.ResourcePath = $@"N:/ACV/data/model/obj/{name}/model_sib/{name}.sib";
         }
         else if (model is MSBV.Model.Enemy)
         {
-            model.ResourcePath = $@"N:\ACV\data\model\ene\{name}\model_sib\{name}.sib";
+            model.ResourcePath = $@"N:/ACV/data/model/ene/{name}/model_sib/{name}.sib";
         }
         else if (model is MSBV.Model.Dummy)
         {
-            model.ResourcePath = $@"N:\ACV\data\model\dummy\dummy_ac\{name}.ap2";
+            model.ResourcePath = $@"N:/ACV/data/model/dummy/dummy_ac/{name}.ap2";
         }
 
         m.Models.Add(model);
@@ -474,19 +474,19 @@ public class MapContainer : ObjectContainer
         model.Name = name;
         if (model is MSBVD.Model.MapPiece)
         {
-            model.ResourcePath = $@"N:\ACV2\data\model\map\{name}\model_sib\{name}.sib";
+            model.ResourcePath = $@"N:/ACV2/data/model/map/{name}/model_sib/{name}.sib";
         }
         else if (model is MSBVD.Model.Object)
         {
-            model.ResourcePath = $@"N:\ACV2\data\model\obj\{name}\model_sib\{name}.sib";
+            model.ResourcePath = $@"N:/ACV2/data/model/obj/{name}/model_sib/{name}.sib";
         }
         else if (model is MSBVD.Model.Enemy)
         {
-            model.ResourcePath = $@"N:\ACV2\data\model\ene\{name}\model_sib\{name}.sib";
+            model.ResourcePath = $@"N:/ACV2/data/model/ene/{name}/model_sib/{name}.sib";
         }
         else if (model is MSBVD.Model.Dummy)
         {
-            model.ResourcePath = $@"N:\ACV2\data\model\dummy\dummy_ac\{name}.ap2";
+            model.ResourcePath = $@"N:/ACV2/data/model/dummy/dummy_ac/{name}.ap2";
         }
 
         m.Models.Add(model);

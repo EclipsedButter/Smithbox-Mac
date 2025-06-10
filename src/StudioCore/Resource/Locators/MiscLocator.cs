@@ -56,12 +56,12 @@ public static class MiscLocator
         List<string> ret = new List<string>();
 
         // DS1R + DS3 + Sekiro + ER + AC6
-        var paramDir = @"\chr";
+        var paramDir = @"/chr";
         var paramExt = @".anibnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
         {
-            paramDir = @"\timeact\chr";
+            paramDir = @"/timeact/chr";
             paramExt = @".tae";
         }
 
@@ -75,7 +75,7 @@ public static class MiscLocator
     {
         List<string> ret = new List<string>();
 
-        var paramDir = @"\chr";
+        var paramDir = @"/chr";
         var paramExt = @".behbnd.dcx";
 
         ret = LocatorUtils.GetAssetFiles(paramDir, paramExt, ignoreProject);
@@ -87,14 +87,14 @@ public static class MiscLocator
     {
         List<string> ret = new List<string>();
 
-        var paramDir = @"\obj";
+        var paramDir = @"/obj";
         var paramExt = @".objbnd.dcx";
 
         ret = LocatorUtils.GetAssetFiles(paramDir, paramExt, ignoreProject);
 
         if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
         {
-            paramDir = @"\timeact\obj";
+            paramDir = @"/timeact/obj";
             paramExt = @".tae";
 
             ret = LocatorUtils.GetAssetFiles(paramDir, paramExt, ignoreProject);
@@ -107,17 +107,17 @@ public static class MiscLocator
     {
         Dictionary<string, List<string>> assetDict = new();
 
-        var paramDir = @"\asset\aeg\";
+        var paramDir = @"/asset/aeg/";
         var paramExt = @".geombnd.dcx";
 
         List<string> ret = new List<string>();
 
-        var searchDir = $"{Smithbox.GameRoot}\\{paramDir}";
+        var searchDir = $"{Smithbox.GameRoot}/{paramDir}";
         foreach (var folderPath in Directory.EnumerateDirectories(searchDir))
         {
             var folderName = folderPath.Substring(folderPath.Length - 6);
 
-            ret = LocatorUtils.GetAssetFiles($"{paramDir}\\{folderName}\\", paramExt, ignoreProject);
+            ret = LocatorUtils.GetAssetFiles($"{paramDir}/{folderName}/", paramExt, ignoreProject);
             assetDict.Add(folderName, ret);
         }
 
@@ -128,7 +128,7 @@ public static class MiscLocator
     {
         List<string> ret = new List<string>();
 
-        var paramDir = @"\asset\environment\geometry\";
+        var paramDir = @"/asset/environment/geometry/";
         var paramExt = @".geombnd.dcx";
 
         ret = LocatorUtils.GetAssetFiles(paramDir, paramExt, ignoreProject);
@@ -150,7 +150,7 @@ public static class MiscLocator
         }
 
         // DS3 + Sekiro + ER + AC6
-        var paramDir = @"\chr";
+        var paramDir = @"/chr";
         var paramExt = @".behbnd.dcx";
 
         List<string> ret = LocatorUtils.GetAssetFiles(paramDir, paramExt);
@@ -176,7 +176,7 @@ public static class MiscLocator
         }
 
         // ER
-        var baseDir = $"{Smithbox.GameRoot}\\map";
+        var baseDir = $"{Smithbox.GameRoot}/map";
         var targetExt = @".hkxbhd";
 
         List<string> combinedList = new();
@@ -219,7 +219,7 @@ public static class MiscLocator
         }
 
         // DS1R + DS3 + Sekiro + ER + AC6
-        var paramDir = @"\chr";
+        var paramDir = @"/chr";
         var paramExt = @".chrbnd.dcx";
 
         List<string> ret = LocatorUtils.GetAssetFiles(paramDir, paramExt);
@@ -240,13 +240,13 @@ public static class MiscLocator
         }
 
         // DS1R + DS3
-        var paramDir = @"\remo";
+        var paramDir = @"/remo";
         var paramExt = @".remobnd.dcx";
 
         // Sekiro + ER + AC6
         if (Smithbox.ProjectType is ProjectType.SDT or ProjectType.ER or ProjectType.AC6)
         {
-            paramDir = @"\cutscene";
+            paramDir = @"/cutscene";
             paramExt = @".cutscenebnd.dcx";
         }
 
@@ -268,12 +268,12 @@ public static class MiscLocator
         }
 
         // DS1R + DS3 + Sekiro
-        var paramDir = @"\mtd";
+        var paramDir = @"/mtd";
         var paramExt = @".mtdbnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.ER or ProjectType.AC6)
         {
-            paramDir = @"\material";
+            paramDir = @"/material";
             paramExt = @".matbinbnd.dcx";
             // Account for .devpatch in ER (e.g. matbinbnd.devpatch.dcx)
         }
@@ -296,7 +296,7 @@ public static class MiscLocator
         }
 
         // DS1R + DS3 + Sekiro + ER + AC6
-        var paramDir = @"\sfx";
+        var paramDir = @"/sfx";
         var paramExt = @".ffxbnd.dcx";
 
         List<string> ret = LocatorUtils.GetAssetFiles(paramDir, paramExt);
@@ -316,7 +316,7 @@ public static class MiscLocator
         }
 
         // DS1R + DS3 + Sekiro + ER + AC6
-        var paramDir = @"\event";
+        var paramDir = @"/event";
         var paramExt = @".emevd.dcx";
 
         List<string> ret = LocatorUtils.GetAssetFiles(paramDir, paramExt);
@@ -334,12 +334,12 @@ public static class MiscLocator
         }
 
         // DS1R + DS3 + Sekiro + ER + AC6
-        var paramDir = @"\script\talk";
+        var paramDir = @"/script/talk";
         var paramExt = @".talkesdbnd.dcx";
 
         if(Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
         {
-            paramDir = @"\ezstate\";
+            paramDir = @"/ezstate/";
             paramExt = @".esd";
         }
 

@@ -33,12 +33,12 @@ public static class MaterialBank
 
         //TaskLogs.AddLog($"SaveCutscene: {info.Path}");
 
-        var fileDir = @"\mtd";
+        var fileDir = @"/mtd";
         var fileExt = @".mtdbnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.ER or ProjectType.AC6)
         {
-            fileDir = @"\material";
+            fileDir = @"/material";
             fileExt = @".matbinbnd.dcx";
         }
 
@@ -53,8 +53,8 @@ public static class MaterialBank
         BND4 writeBinder = binder as BND4;
         byte[] fileBytes = null;
 
-        var assetRoot = $@"{Smithbox.GameRoot}\{fileDir}\{info.Name}{fileExt}";
-        var assetMod = $@"{Smithbox.ProjectRoot}\{fileDir}\{info.Name}{fileExt}";
+        var assetRoot = $@"{Smithbox.GameRoot}/{fileDir}/{info.Name}{fileExt}";
+        var assetMod = $@"{Smithbox.ProjectRoot}/{fileDir}/{info.Name}{fileExt}";
 
         switch (Smithbox.ProjectType)
         {
@@ -76,9 +76,9 @@ public static class MaterialBank
         }
 
         // Add folder if it does not exist in GameModDirectory
-        if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{fileDir}\\"))
+        if (!Directory.Exists($"{Smithbox.ProjectRoot}/{fileDir}/"))
         {
-            Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{fileDir}\\");
+            Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{fileDir}/");
         }
 
         // Make a backup of the original file if a mod path doesn't exist
@@ -106,12 +106,12 @@ public static class MaterialBank
 
         FileBank = new();
 
-        var fileDir = @"\mtd";
+        var fileDir = @"/mtd";
         var fileExt = @".mtdbnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.ER or ProjectType.AC6)
         {
-            fileDir = @"\material";
+            fileDir = @"/material";
             fileExt = @".matbinbnd.dcx";
         }
 
@@ -119,16 +119,16 @@ public static class MaterialBank
 
         foreach (var name in fileNames)
         {
-            var filePath = $"{fileDir}\\{name}{fileExt}";
+            var filePath = $"{fileDir}/{name}{fileExt}";
 
-            if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+            if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
             {
-                LoadMaterial($"{Smithbox.ProjectRoot}\\{filePath}");
+                LoadMaterial($"{Smithbox.ProjectRoot}/{filePath}");
                 //TaskLogs.AddLog($"Loaded from GameModDirectory: {filePath}");
             }
             else
             {
-                LoadMaterial($"{Smithbox.GameRoot}\\{filePath}");
+                LoadMaterial($"{Smithbox.GameRoot}/{filePath}");
                 //TaskLogs.AddLog($"Loaded from GameRootDirectory: {filePath}");
             }
         }

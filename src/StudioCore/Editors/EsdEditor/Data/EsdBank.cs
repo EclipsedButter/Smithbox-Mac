@@ -38,7 +38,7 @@ public static class EsdBank
 
         //TaskLogs.AddLog($"SaveTalkScript: {info.Path}");
 
-        var fileDir = @"\script\talk";
+        var fileDir = @"/script/talk";
         var fileExt = @".talkesdbnd.dcx";
 
         foreach (BinderFile file in binder.Files)
@@ -50,8 +50,8 @@ public static class EsdBank
         }
 
         byte[] fileBytes = null;
-        var assetRoot = $@"{Smithbox.GameRoot}\{fileDir}\{info.Name}{fileExt}";
-        var assetMod = $@"{Smithbox.ProjectRoot}\{fileDir}\{info.Name}{fileExt}";
+        var assetRoot = $@"{Smithbox.GameRoot}/{fileDir}/{info.Name}{fileExt}";
+        var assetMod = $@"{Smithbox.ProjectRoot}/{fileDir}/{info.Name}{fileExt}";
 
         if (Smithbox.ProjectType is ProjectType.DS1 or ProjectType.DS1R)
         {
@@ -98,9 +98,9 @@ public static class EsdBank
         }
 
         // Add folder if it does not exist in GameModDirectory
-        if (!Directory.Exists($"{Smithbox.ProjectRoot}\\{fileDir}\\"))
+        if (!Directory.Exists($"{Smithbox.ProjectRoot}/{fileDir}/"))
         {
-            Directory.CreateDirectory($"{Smithbox.ProjectRoot}\\{fileDir}\\");
+            Directory.CreateDirectory($"{Smithbox.ProjectRoot}/{fileDir}/");
         }
 
         // Make a backup of the original file if a mod path doesn't exist
@@ -128,23 +128,23 @@ public static class EsdBank
 
         TalkBank = new();
 
-        var fileDir = @"\script\talk";
+        var fileDir = @"/script/talk";
         var fileExt = @".talkesdbnd.dcx";
 
         List<string> talkNames = MiscLocator.GetTalkBinders();
 
         foreach (var name in talkNames)
         {
-            var filePath = $"{fileDir}\\{name}{fileExt}";
+            var filePath = $"{fileDir}/{name}{fileExt}";
 
-            if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+            if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
             {
-                LoadEsdScript($"{Smithbox.ProjectRoot}\\{filePath}");
+                LoadEsdScript($"{Smithbox.ProjectRoot}/{filePath}");
                 //TaskLogs.AddLog($"Loaded from GameModDirectory: {filePath}");
             }
             else
             {
-                LoadEsdScript($"{Smithbox.GameRoot}\\{filePath}");
+                LoadEsdScript($"{Smithbox.GameRoot}/{filePath}");
                 //TaskLogs.AddLog($"Loaded from GameRootDirectory: {filePath}");
             }
         }

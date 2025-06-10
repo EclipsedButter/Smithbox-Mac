@@ -30,8 +30,8 @@ public static class HavokTool
         var testCompendium = $"{testContainer}.compendium.dcx";
         var testFile = $"{type}{mapId.Substring(1)}_001000.hkx.dcx";
 
-        var bdtPath = $"{Smithbox.GameRoot}\\map\\{mapId.Substring(0, 3)}\\{mapId}\\{testbdt}";
-        var bhdPath = $"{Smithbox.GameRoot}\\map\\{mapId.Substring(0, 3)}\\{mapId}\\{testbhd}";
+        var bdtPath = $"{Smithbox.GameRoot}/map/{mapId.Substring(0, 3)}/{mapId}/{testbdt}";
+        var bhdPath = $"{Smithbox.GameRoot}/map/{mapId.Substring(0, 3)}/{mapId}/{testbhd}";
 
         Memory<byte> testFileBytes = null;
         Memory<byte> compendiumBytes = null;

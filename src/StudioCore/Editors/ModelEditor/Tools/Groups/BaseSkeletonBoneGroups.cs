@@ -21,7 +21,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class BaseSkeletonBoneGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Base Skeleton Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Base Skeleton Groups/";
 
         public static List<string> BaseSkeletonGroupFiles = new List<string>();
 
@@ -248,7 +248,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static BaseSkeletonList ReadBaseSkeletonGroup(string entry)
         {
             var newBaseSkeletonList = new BaseSkeletonList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

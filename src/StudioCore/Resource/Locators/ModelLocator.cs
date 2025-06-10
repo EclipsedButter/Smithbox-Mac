@@ -41,21 +41,21 @@ public static class ModelLocator
         ResourceDescriptor ret = new();
 
         if (Smithbox.ProjectType is ProjectType.DS1 or ProjectType.DES)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{modelId}.flver");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{modelId}.flver");
         else if (Smithbox.ProjectType is ProjectType.DS1R or ProjectType.BB)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{modelId}.flver.dcx");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{modelId}.flver.dcx");
         else if (Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"model\map\{mapid}.mapbhd");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"model/map/{mapid}.mapbhd");
         else if (Smithbox.ProjectType is ProjectType.ER)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid[..3]}\{mapid}\{modelId}.mapbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid[..3]}/{mapid}/{modelId}.mapbnd.dcx");
         else if (Smithbox.ProjectType is ProjectType.AC6)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid[..3]}\{mapid}\{modelId}.mapbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid[..3]}/{mapid}/{modelId}.mapbnd.dcx");
         else if (Smithbox.ProjectType is ProjectType.ACFA)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"model\map\{mapid}\{mapid}_m.bnd");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"model/map/{mapid}/{mapid}_m.bnd");
         else if (Smithbox.ProjectType is ProjectType.ACV or ProjectType.ACVD)
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"model\map\{mapid}\{mapid}_m.dcx.bnd");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"model/map/{mapid}/{mapid}_m.dcx.bnd");
         else
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{modelId}.mapbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{modelId}.mapbnd.dcx");
 
         ret.AssetName = modelId;
         if (Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
@@ -89,13 +89,13 @@ public static class ModelLocator
         {
             if (hi)
             {
-                ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{model}.hkx");
+                ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{model}.hkx");
                 ret.AssetName = model;
                 ret.AssetVirtualPath = $@"map/{mapid}/hit/hi/{model}.hkx";
             }
             else
             {
-                ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\l{model.Substring(1)}.hkx");
+                ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/l{model.Substring(1)}.hkx");
                 ret.AssetName = model;
                 ret.AssetVirtualPath = $@"map/{mapid}/hit/lo/l{model.Substring(1)}.hkx";
             }
@@ -108,13 +108,13 @@ public static class ModelLocator
                 {
                     if (hi)
                     {
-                        ret.AssetPath = LocatorUtils.GetAssetPath_CollisionHack($@"map\{mapid}\{model}.hkx");
+                        ret.AssetPath = LocatorUtils.GetAssetPath_CollisionHack($@"map/{mapid}/{model}.hkx");
                         ret.AssetName = model;
                         ret.AssetVirtualPath = $@"map/{mapid}/hit/hi/{model}.hkx";
                     }
                     else
                     {
-                        ret.AssetPath = LocatorUtils.GetAssetPath_CollisionHack($@"map\{mapid}\l{model.Substring(1)}.hkx");
+                        ret.AssetPath = LocatorUtils.GetAssetPath_CollisionHack($@"map/{mapid}/l{model.Substring(1)}.hkx");
                         ret.AssetName = model;
                         ret.AssetVirtualPath = $@"map/{mapid}/hit/lo/l{model.Substring(1)}.hkx";
                     }
@@ -123,7 +123,7 @@ public static class ModelLocator
         }
         else if (Smithbox.ProjectType == ProjectType.DS2S)
         {
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"model\map\h{mapid.Substring(1)}.hkxbhd");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"model/map/h{mapid.Substring(1)}.hkxbhd");
             ret.AssetName = model;
             ret.AssetVirtualPath = $@"map/{mapid}/hit/hi/{model}.hkx.dcx";
             ret.AssetArchiveVirtualPath = $@"map/{mapid}/hit/hi";
@@ -132,14 +132,14 @@ public static class ModelLocator
         {
             if (hi)
             {
-                ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\h{mapid.Substring(1)}.hkxbhd");
+                ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/h{mapid.Substring(1)}.hkxbhd");
                 ret.AssetName = model;
                 ret.AssetVirtualPath = $@"map/{mapid}/hit/hi/h{model.Substring(1)}.hkx.dcx";
                 ret.AssetArchiveVirtualPath = $@"map/{mapid}/hit/hi";
             }
             else
             {
-                ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\l{mapid.Substring(1)}.hkxbhd");
+                ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/l{mapid.Substring(1)}.hkxbhd");
                 ret.AssetName = model;
                 ret.AssetVirtualPath = $@"map/{mapid}/hit/lo/l{model.Substring(1)}.hkx.dcx";
                 ret.AssetArchiveVirtualPath = $@"map/{mapid}/hit/lo";
@@ -149,14 +149,14 @@ public static class ModelLocator
         {
             if (hi)
             {
-                ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid.Substring(0, 3)}\{mapid}\h{mapid.Substring(1)}.hkxbhd");
+                ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid.Substring(0, 3)}/{mapid}/h{mapid.Substring(1)}.hkxbhd");
                 ret.AssetName = model;
                 ret.AssetVirtualPath = $@"map/{mapid}/hit/hi/h{model.Substring(1)}.hkx.dcx";
                 ret.AssetArchiveVirtualPath = $@"map/{mapid}/hit/hi";
             }
             else
             {
-                ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid.Substring(0, 3)}\{mapid}\l{mapid.Substring(1)}.hkxbhd");
+                ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid.Substring(0, 3)}/{mapid}/l{mapid.Substring(1)}.hkxbhd");
                 ret.AssetName = model;
                 ret.AssetVirtualPath = $@"map/{mapid}/hit/lo/l{model.Substring(1)}.hkx.dcx";
                 ret.AssetArchiveVirtualPath = $@"map/{mapid}/hit/lo";
@@ -175,7 +175,7 @@ public static class ModelLocator
         ResourceDescriptor ret = new();
         if (Smithbox.ProjectType == ProjectType.DS1 || Smithbox.ProjectType == ProjectType.DS1R || Smithbox.ProjectType == ProjectType.DES)
         {
-            ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{model}.nvm");
+            ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{model}.nvm");
             ret.AssetName = model;
             ret.AssetArchiveVirtualPath = $@"map/{mapid}/nav";
             ret.AssetVirtualPath = $@"map/{mapid}/nav/{model}.nvm";
@@ -189,7 +189,7 @@ public static class ModelLocator
     public static ResourceDescriptor GetHavokNavmeshes(string mapid)
     {
         ResourceDescriptor ret = new();
-        ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{mapid}.nvmhktbnd.dcx");
+        ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{mapid}.nvmhktbnd.dcx");
         ret.AssetName = mapid;
         ret.AssetArchiveVirtualPath = $@"map/{mapid}/nav";
         return ret;
@@ -198,7 +198,7 @@ public static class ModelLocator
     public static ResourceDescriptor GetHavokNavmeshModel(string mapid, string model)
     {
         ResourceDescriptor ret = new();
-        ret.AssetPath = LocatorUtils.GetAssetPath($@"map\{mapid}\{mapid}.nvmhktbnd.dcx");
+        ret.AssetPath = LocatorUtils.GetAssetPath($@"map/{mapid}/{mapid}.nvmhktbnd.dcx");
         ret.AssetName = model;
         ret.AssetArchiveVirtualPath = $@"map/{mapid}/nav";
         ret.AssetVirtualPath = $@"map/{mapid}/nav/{model}.hkx";
@@ -219,13 +219,13 @@ public static class ModelLocator
 
         // Direct paths
         if (Smithbox.ProjectType is ProjectType.DS1)
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"chr\{chrId}.chrbnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"chr/{chrId}.chrbnd");
         else if (Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model\chr\{chrId}.bnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model/chr/{chrId}.bnd");
         else if (Smithbox.ProjectType is ProjectType.DES)
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"chr\{chrContainerId}\{chrId}.chrbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"chr/{chrContainerId}/{chrId}.chrbnd.dcx");
         else
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"chr\{chrId}.chrbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"chr/{chrId}.chrbnd.dcx");
 
         return ret;
     }
@@ -262,32 +262,32 @@ public static class ModelLocator
         // Direct paths
         if (Smithbox.ProjectType is ProjectType.DS1)
         {
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"obj\{objId}.objbnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"obj/{objId}.objbnd");
         }
         else if (Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
         {
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model\obj\{objId}.bnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model/obj/{objId}.bnd");
         }
         else if (Smithbox.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
         {
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model\obj\{objId}\{objId}_m.bnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model/obj/{objId}/{objId}_m.bnd");
         }
         else if (Smithbox.ProjectType is ProjectType.ER)
         {
             // Derive subfolder path from model name (all vanilla AEG are within subfolders)
             if (objContainerId.Length >= 6)
             {
-                ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"asset\aeg\{objContainerId.Substring(0, 6)}\{objId}.geombnd.dcx");
+                ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"asset/aeg/{objContainerId.Substring(0, 6)}/{objId}.geombnd.dcx");
             }
         }
         else if (Smithbox.ProjectType is ProjectType.AC6)
         {
             if (objContainerId.Length >= 6)
-                ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"asset\environment\geometry\{objId}.geombnd.dcx");
+                ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"asset/environment/geometry/{objId}.geombnd.dcx");
         }
         else
         {
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"obj\{objId}.objbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"obj/{objId}.objbnd.dcx");
         }
 
         return ret;
@@ -315,7 +315,7 @@ public static class ModelLocator
         // Direct paths
         if (Smithbox.ProjectType == ProjectType.DS1)
         {
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"parts\{partId}.partsbnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"parts/{partId}.partsbnd");
         }
         else if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
         {
@@ -350,11 +350,11 @@ public static class ModelLocator
                     break;
             }
 
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model\parts\{partType}\{partId}.bnd");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"model/parts/{partType}/{partId}.bnd");
         }
         else
         {
-            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"parts\{partId}.partsbnd.dcx");
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath($@"parts/{partId}.partsbnd.dcx");
         }
 
         return ret;

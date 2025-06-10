@@ -978,7 +978,7 @@ public static class ResourceManager
                     string path = null;
                     if (texpath.StartsWith("map/tex"))
                     {
-                        path = $@"{Smithbox.GameRoot}\map\tx\{Path.GetFileName(texpath)}.tpf";
+                        path = $@"{Smithbox.GameRoot}/map/tx/{Path.GetFileName(texpath)}.tpf";
                     }
 
                     if (path != null && File.Exists(path))

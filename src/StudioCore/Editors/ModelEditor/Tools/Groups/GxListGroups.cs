@@ -20,7 +20,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class GXListGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\GX List Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/GX List Groups/";
 
         public static List<string> GXListGroupFiles = new List<string>();
 
@@ -238,7 +238,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static GXListList ReadGXListGroup(string entry)
         {
             var newGXListList = new GXListList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

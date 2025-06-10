@@ -19,7 +19,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 {
     public static class DummyGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Dummy Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Dummy Groups/";
 
         public static List<string> DummyGroupFiles = new List<string>();
 
@@ -237,7 +237,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static DummyList ReadDummyGroup(string entry)
         {
             var newDummyList = new DummyList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

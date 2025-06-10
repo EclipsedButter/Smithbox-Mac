@@ -137,7 +137,7 @@ public static class TextFinder
 
                     if (matchType is SearchMatchType.All or SearchMatchType.ID)
                     {
-                        if(Regex.IsMatch(searchText, @"^\d+$"))
+                        if (Regex.IsMatch(searchText, @"^\d+$"))
                         {
                             var id = int.Parse(searchText);
                             if (fmgEntry.ID == id)

@@ -62,8 +62,8 @@ public unsafe class OpenGLCompatGraphicsContext : IGraphicsContext
 
         _context = new SdlContext(SDL, Window.SdlWindowHandle);
         _context.Create(
-            (GLattr.ContextMajorVersion, 3),
-            (GLattr.ContextMinorVersion, 3),
+            (GLattr.ContextMajorVersion, 2), //! was 3, mac limited to 2.1
+            (GLattr.ContextMinorVersion, 1), //! was 3
             (GLattr.ContextProfileMask, (int)GLprofile.Core),
             (GLattr.ContextFlags, (int)ContextFlagMask.ForwardCompatibleBit),
             (GLattr.ShareWithCurrentContext, 0)

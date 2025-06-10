@@ -50,8 +50,8 @@ public class SelectionGroupBank
         if (Smithbox.ProjectRoot == "")
             return;
 
-        var SelectionDirectory = $"{Smithbox.ProjectRoot}\\.smithbox\\{MiscLocator.GetGameIDForDir()}\\selections";
-        var SelectionPath = $"{SelectionDirectory}\\selection_groups.json";
+        var SelectionDirectory = $"{Smithbox.ProjectRoot}/.smithbox/{MiscLocator.GetGameIDForDir()}/selections";
+        var SelectionPath = $"{SelectionDirectory}/selection_groups.json";
 
         if (!Directory.Exists(SelectionDirectory))
         {
@@ -150,8 +150,8 @@ public class SelectionGroupBank
         if (Smithbox.ProjectType == ProjectType.Undefined)
             return false;
 
-        var SelectionDirectory = $"{Smithbox.ProjectRoot}\\.smithbox\\{MiscLocator.GetGameIDForDir()}\\selections";
-        var SelectionPath = $"{SelectionDirectory}\\selection_groups.json";
+        var SelectionDirectory = $"{Smithbox.ProjectRoot}/.smithbox/{MiscLocator.GetGameIDForDir()}/selections";
+        var SelectionPath = $"{SelectionDirectory}/selection_groups.json";
 
         string jsonString = JsonSerializer.Serialize(Groups, typeof(SelectionGroupList), SelectionGroupListSerializationContext.Default);
 
@@ -182,7 +182,7 @@ public class SelectionGroupBank
     {
         var smithboxResource = new SelectionGroupList();
 
-        var smithboxResourcePath = $"{Smithbox.SmithboxDataRoot}\\{MiscLocator.GetGameIDForDir()}\\{directory}\\{filename}.json";
+        var smithboxResourcePath = $"{Smithbox.SmithboxDataRoot}/{MiscLocator.GetGameIDForDir()}/{directory}/{filename}.json";
 
         if (File.Exists(smithboxResourcePath))
         {

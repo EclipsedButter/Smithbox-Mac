@@ -121,7 +121,8 @@ namespace Veldrid
             VkImageLayout newLayout)
         {
             Debug.Assert(oldLayout != newLayout);
-            var barrier = new VkImageMemoryBarrier2
+            //var barrier = new VkImageMemoryBarrier2
+            var barrier = new VkImageMemoryBarrier
             {
                 oldLayout = oldLayout,
                 newLayout = newLayout,
@@ -134,154 +135,164 @@ namespace Veldrid
             barrier.subresourceRange.levelCount = levelCount;
             barrier.subresourceRange.baseArrayLayer = baseArrayLayer;
             barrier.subresourceRange.layerCount = layerCount;
-            
+
+            VkPipelineStageFlags srcStageMask;
+            VkPipelineStageFlags dstStageMask;
+
             if ((oldLayout == VkImageLayout.Undefined || oldLayout == VkImageLayout.Preinitialized) && newLayout == VkImageLayout.TransferDstOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.None;
-                barrier.dstAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.srcStageMask = VkPipelineStageFlags2.None;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                //barrier.srcAccessMask = VkAccessFlags2.None;
+                //barrier.dstAccessMask = VkAccessFlags2.TransferWrite;
+                //barrier.srcStageMask = VkPipelineStageFlags2.None;
+                //barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.None;
+                barrier.dstAccessMask = VkAccessFlags.TransferWrite;
+                srcStageMask = VkPipelineStageFlags.None;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.ShaderReadOnlyOptimal && newLayout == VkImageLayout.TransferSrcOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.dstAccessMask = VkAccessFlags2.TransferRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.FragmentShader;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.ShaderRead;
+                barrier.dstAccessMask = VkAccessFlags.TransferRead;
+                srcStageMask = VkPipelineStageFlags.FragmentShader;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.ShaderReadOnlyOptimal && newLayout == VkImageLayout.TransferDstOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.dstAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.srcStageMask = VkPipelineStageFlags2.FragmentShader;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.ShaderRead;
+                barrier.dstAccessMask = VkAccessFlags.TransferWrite;
+                srcStageMask = VkPipelineStageFlags.FragmentShader;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.Preinitialized && newLayout == VkImageLayout.TransferSrcOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.None;
-                barrier.dstAccessMask = VkAccessFlags2.TransferRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.None;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.None;
+                barrier.dstAccessMask = VkAccessFlags.TransferRead;
+                srcStageMask = VkPipelineStageFlags.None;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.Preinitialized && newLayout == VkImageLayout.General)
             {
-                barrier.srcAccessMask = VkAccessFlags2.None;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.None;
-                barrier.dstStageMask = VkPipelineStageFlags2.ComputeShader;
+                barrier.srcAccessMask = VkAccessFlags.None;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.None;
+                dstStageMask = VkPipelineStageFlags.ComputeShader;
             }
             else if (oldLayout == VkImageLayout.Preinitialized && newLayout == VkImageLayout.ShaderReadOnlyOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.None;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.None;
-                barrier.dstStageMask = VkPipelineStageFlags2.FragmentShader;
+                barrier.srcAccessMask = VkAccessFlags.None;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.None;
+                dstStageMask = VkPipelineStageFlags.FragmentShader;
             }
             else if (oldLayout == VkImageLayout.General && newLayout == VkImageLayout.ShaderReadOnlyOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferRead;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.FragmentShader;
+                barrier.srcAccessMask = VkAccessFlags.TransferRead;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.FragmentShader;
             }
             else if (oldLayout == VkImageLayout.ShaderReadOnlyOptimal && newLayout == VkImageLayout.General)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.FragmentShader;
-                barrier.dstStageMask = VkPipelineStageFlags2.ComputeShader;
+                barrier.srcAccessMask = VkAccessFlags.ShaderRead;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.FragmentShader;
+                dstStageMask = VkPipelineStageFlags.ComputeShader;
             }
 
             else if (oldLayout == VkImageLayout.TransferSrcOptimal && newLayout == VkImageLayout.ShaderReadOnlyOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferRead;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.FragmentShader;
+                barrier.srcAccessMask = VkAccessFlags.TransferRead;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.FragmentShader;
             }
             else if (oldLayout == VkImageLayout.TransferDstOptimal && newLayout == VkImageLayout.ShaderReadOnlyOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.FragmentShader;
+                barrier.srcAccessMask = VkAccessFlags.TransferWrite;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.FragmentShader;
             }
             else if (oldLayout == VkImageLayout.TransferSrcOptimal && newLayout == VkImageLayout.TransferDstOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferRead;
-                barrier.dstAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.TransferRead;
+                barrier.dstAccessMask = VkAccessFlags.TransferWrite;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.TransferDstOptimal && newLayout == VkImageLayout.TransferSrcOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.dstAccessMask = VkAccessFlags2.TransferRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.TransferWrite;
+                barrier.dstAccessMask = VkAccessFlags.TransferRead;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.ColorAttachmentOptimal && newLayout == VkImageLayout.TransferSrcOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ColorAttachmentWrite;
-                barrier.dstAccessMask = VkAccessFlags2.TransferRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.ColorAttachmentOutput;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.ColorAttachmentWrite;
+                barrier.dstAccessMask = VkAccessFlags.TransferRead;
+                srcStageMask = VkPipelineStageFlags.ColorAttachmentOutput;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.ColorAttachmentOptimal && newLayout == VkImageLayout.TransferDstOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ColorAttachmentWrite;
-                barrier.dstAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.srcStageMask = VkPipelineStageFlags2.ColorAttachmentOutput;
-                barrier.dstStageMask = VkPipelineStageFlags2.Transfer;
+                barrier.srcAccessMask = VkAccessFlags.ColorAttachmentWrite;
+                barrier.dstAccessMask = VkAccessFlags.TransferWrite;
+                srcStageMask = VkPipelineStageFlags.ColorAttachmentOutput;
+                dstStageMask = VkPipelineStageFlags.Transfer;
             }
             else if (oldLayout == VkImageLayout.ColorAttachmentOptimal && newLayout == VkImageLayout.ShaderReadOnlyOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ColorAttachmentWrite;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.ColorAttachmentOutput;
-                barrier.dstStageMask = VkPipelineStageFlags2.FragmentShader;
+                barrier.srcAccessMask = VkAccessFlags.ColorAttachmentWrite;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.ColorAttachmentOutput;
+                dstStageMask = VkPipelineStageFlags.FragmentShader;
             }
             else if (oldLayout == VkImageLayout.DepthStencilAttachmentOptimal && newLayout == VkImageLayout.ShaderReadOnlyOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.DepthStencilAttachmentWrite;
-                barrier.dstAccessMask = VkAccessFlags2.ShaderRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.LateFragmentTests;
-                barrier.dstStageMask = VkPipelineStageFlags2.FragmentShader;
+                barrier.srcAccessMask = VkAccessFlags.DepthStencilAttachmentWrite;
+                barrier.dstAccessMask = VkAccessFlags.ShaderRead;
+                srcStageMask = VkPipelineStageFlags.LateFragmentTests;
+                dstStageMask = VkPipelineStageFlags.FragmentShader;
             }
             else if (oldLayout == VkImageLayout.ColorAttachmentOptimal && newLayout == VkImageLayout.PresentSrcKHR)
             {
-                barrier.srcAccessMask = VkAccessFlags2.ColorAttachmentWrite;
-                barrier.dstAccessMask = VkAccessFlags2.MemoryRead;
-                barrier.srcStageMask = VkPipelineStageFlags2.ColorAttachmentOutput;
-                barrier.dstStageMask = VkPipelineStageFlags2.BottomOfPipe;
+                barrier.srcAccessMask = VkAccessFlags.ColorAttachmentWrite;
+                barrier.dstAccessMask = VkAccessFlags.MemoryRead;
+                srcStageMask = VkPipelineStageFlags.ColorAttachmentOutput;
+                dstStageMask = VkPipelineStageFlags.BottomOfPipe;
             }
             else if (oldLayout == VkImageLayout.TransferDstOptimal && newLayout == VkImageLayout.ColorAttachmentOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.dstAccessMask = VkAccessFlags2.ColorAttachmentWrite;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.ColorAttachmentOutput;
+                barrier.srcAccessMask = VkAccessFlags.TransferWrite;
+                barrier.dstAccessMask = VkAccessFlags.ColorAttachmentWrite;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.ColorAttachmentOutput;
             }
             else if (oldLayout == VkImageLayout.TransferDstOptimal && newLayout == VkImageLayout.DepthStencilAttachmentOptimal)
             {
-                barrier.srcAccessMask = VkAccessFlags2.TransferWrite;
-                barrier.dstAccessMask = VkAccessFlags2.DepthStencilAttachmentWrite;
-                barrier.srcStageMask = VkPipelineStageFlags2.Transfer;
-                barrier.dstStageMask = VkPipelineStageFlags2.LateFragmentTests;
+                barrier.srcAccessMask = VkAccessFlags.TransferWrite;
+                barrier.dstAccessMask = VkAccessFlags.DepthStencilAttachmentWrite;
+                srcStageMask = VkPipelineStageFlags.Transfer;
+                dstStageMask = VkPipelineStageFlags.LateFragmentTests;
             }
             else
             {
+                srcStageMask = VkPipelineStageFlags.None;
+                dstStageMask = VkPipelineStageFlags.None;
                 Debug.Fail("Invalid image layout transition.");
             }
 
-            var dependencyInfo = new VkDependencyInfo
-            {
-                dependencyFlags = VkDependencyFlags.None,
-                imageMemoryBarrierCount = 1,
-                pImageMemoryBarriers = &barrier
-            };
-            
-            vkCmdPipelineBarrier2(cb, &dependencyInfo);
+            //! VK 1.3
+            //var dependencyInfo = new VkDependencyInfo
+            //{
+            //    dependencyFlags = VkDependencyFlags.None,
+            //    imageMemoryBarrierCount = 1,
+            //    pImageMemoryBarriers = &barrier
+            //};
+            //vkCmdPipelineBarrier2(cb, &dependencyInfo);
+            vkCmdPipelineBarrier(cb, srcStageMask, dstStageMask, VkDependencyFlags.None, 0, null, 0, null, 1, &barrier);
         }
     }
 

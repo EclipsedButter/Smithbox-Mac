@@ -58,49 +58,49 @@ public static class TextureFolderBank
 
     private static void ScanMenuFolder(TextureViewCategory category)
     {
-        var folderDir = @"\menu";
+        var folderDir = @"/menu";
         var fileExt = @".tpf.dcx";
 
         if (Smithbox.ProjectType is ProjectType.AC6 or ProjectType.ER or ProjectType.SDT)
         {
-            folderDir = @"\menu\hi";
+            folderDir = @"/menu/hi";
         }
 
         FindTextureFolder(folderDir, fileExt, category);
 
         if (Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
         {
-            folderDir = @"\menu\tex\icon";
+            folderDir = @"/menu/tex/icon";
             fileExt = @".tpf";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\menu\tex\icon\bonfire_area";
+            folderDir = @"/menu/tex/icon/bonfire_area";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\menu\tex\icon\bonfire_list";
+            folderDir = @"/menu/tex/icon/bonfire_list";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\menu\tex\icon\charamaking";
+            folderDir = @"/menu/tex/icon/charamaking";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\menu\tex\icon\effect";
+            folderDir = @"/menu/tex/icon/effect";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\menu\tex\icon\item_category";
+            folderDir = @"/menu/tex/icon/item_category";
 
             FindTextureFolder(folderDir, fileExt, category);
 
             // TODO: support all the languages
-            folderDir = @"\menu\tex\icon\mapname\english";
+            folderDir = @"/menu/tex/icon/mapname/english";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\menu\tex\icon\vow";
+            folderDir = @"/menu/tex/icon/vow";
 
             FindTextureFolder(folderDir, fileExt, category);
         }
@@ -113,22 +113,22 @@ public static class TextureFolderBank
 
         if (Smithbox.ProjectType is ProjectType.AC6)
         {
-            folderDir = @"\asset\environment\texture";
+            folderDir = @"/asset/environment/texture";
 
             FindTextureFolder(folderDir, fileExt, category);
         }
 
         if (Smithbox.ProjectType is ProjectType.ER)
         {
-            var searchFolderDir = $@"\asset\aet\";
+            var searchFolderDir = $@"/asset/aet/";
 
-            if(Directory.Exists($"{Smithbox.ProjectRoot}\\{searchFolderDir}"))
+            if(Directory.Exists($"{Smithbox.ProjectRoot}/{searchFolderDir}"))
             {
-                searchFolderDir = $"{Smithbox.ProjectRoot}\\{searchFolderDir}";
+                searchFolderDir = $"{Smithbox.ProjectRoot}/{searchFolderDir}";
             }
             else
             {
-                searchFolderDir = $"{Smithbox.GameRoot}\\{searchFolderDir}";
+                searchFolderDir = $"{Smithbox.GameRoot}/{searchFolderDir}";
             }
 
             if(Directory.Exists(searchFolderDir))
@@ -137,7 +137,7 @@ public static class TextureFolderBank
                 {
                     var folderName = folder.Substring(folder.Length - 6); // Assumes folders follow aetXXX
 
-                    folderDir = $@"\asset\aet\{folderName}";
+                    folderDir = $@"/asset/aet/{folderName}";
 
                     FindTextureFolder(folderDir, fileExt, category);
                 }
@@ -147,7 +147,7 @@ public static class TextureFolderBank
 
     private static void ScanObjectFolder(TextureViewCategory category)
     {
-        var folderDir = @"\obj";
+        var folderDir = @"/obj";
         var fileExt = @".objbnd.dcx";
 
         if (Smithbox.ProjectType == ProjectType.DS1)
@@ -157,7 +157,7 @@ public static class TextureFolderBank
 
         if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
         {
-            folderDir = @"\model\obj";
+            folderDir = @"/model/obj";
             fileExt = @".bnd";
         }
 
@@ -166,7 +166,7 @@ public static class TextureFolderBank
 
     private static void ScanCharacterFolder(TextureViewCategory category)
     {
-        var folderDir = @"\chr";
+        var folderDir = @"/chr";
         var fileExt = ".texbnd.dcx";
 
         if (Smithbox.ProjectType is ProjectType.DES or ProjectType.DS1)
@@ -176,7 +176,7 @@ public static class TextureFolderBank
 
         if (Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
         {
-            folderDir = @"\model\chr\";
+            folderDir = @"/model/chr/";
             fileExt = ".texbnd";
         }
 
@@ -185,7 +185,7 @@ public static class TextureFolderBank
 
     private static void ScanPartsFolder(TextureViewCategory category)
     {
-        var folderDir = @"\parts";
+        var folderDir = @"/parts";
         var fileExt = @".partsbnd.dcx";
 
         if (Smithbox.ProjectType == ProjectType.DS1)
@@ -197,53 +197,53 @@ public static class TextureFolderBank
 
         if (Smithbox.ProjectType == ProjectType.DS2S || Smithbox.ProjectType == ProjectType.DS2)
         {
-            folderDir = @"\model\parts";
+            folderDir = @"/model/parts";
             fileExt = @".commonbnd.dcx";
 
             FindTextureFolder(folderDir, fileExt, category);
 
             fileExt = @".bnd";
-            folderDir = @"\model\parts";
+            folderDir = @"/model/parts";
 
             FindTextureFolder(folderDir, fileExt, category);
 
             fileExt = @".bnd";
-            folderDir = @"\model\parts\accessories";
+            folderDir = @"/model/parts/accessories";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\arm";
+            folderDir = @"/model/parts/arm";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\body";
+            folderDir = @"/model/parts/body";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\face";
+            folderDir = @"/model/parts/face";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\head";
+            folderDir = @"/model/parts/head";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\leg";
+            folderDir = @"/model/parts/leg";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\shield";
+            folderDir = @"/model/parts/shield";
 
             FindTextureFolder(folderDir, fileExt, category);
 
-            folderDir = @"\model\parts\weapon";
+            folderDir = @"/model/parts/weapon";
 
             FindTextureFolder(folderDir, fileExt, category);
         }
 
         if(Smithbox.ProjectType is ProjectType.ER)
         {
-            folderDir = @"\parts";
+            folderDir = @"/parts";
             fileExt = @".tpf.dcx";
 
             FindTextureFolder(folderDir, fileExt, category);
@@ -252,7 +252,7 @@ public static class TextureFolderBank
 
     private static void ScanParticleFolder(TextureViewCategory category)
     {
-        var folderDir = @"\sfx";
+        var folderDir = @"/sfx";
         var fileExt = @".ffxbnd.dcx";
 
         if(Smithbox.ProjectType is ProjectType.DS2S or ProjectType.DS2)
@@ -265,7 +265,7 @@ public static class TextureFolderBank
 
     private static void ScanOtherFolder(TextureViewCategory category)
     {
-        var folderDir = @"\other";
+        var folderDir = @"/other";
         var fileExt = @".tpf.dcx";
 
         FindTextureFolder(folderDir, fileExt, category);
@@ -276,15 +276,15 @@ public static class TextureFolderBank
     {
         foreach (var name in GetFileNames(folderDir, fileExt))
         {
-            var filePath = $"{folderDir}\\{name}{fileExt}";
+            var filePath = $"{folderDir}/{name}{fileExt}";
 
-            if (File.Exists($"{Smithbox.ProjectRoot}\\{filePath}"))
+            if (File.Exists($"{Smithbox.ProjectRoot}/{filePath}"))
             {
-                AddTextureFolder($"{Smithbox.ProjectRoot}\\{filePath}", category, true);
+                AddTextureFolder($"{Smithbox.ProjectRoot}/{filePath}", category, true);
             }
             else
             {
-                AddTextureFolder($"{Smithbox.GameRoot}\\{filePath}", category, false);
+                AddTextureFolder($"{Smithbox.GameRoot}/{filePath}", category, false);
             }
         }
     }

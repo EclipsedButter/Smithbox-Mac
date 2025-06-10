@@ -26,16 +26,16 @@ public static class Test_MSB_ACVD_BytePerfect
             if (!bytes.AsMemory().Span.SequenceEqual(written))
             {
                 Directory.CreateDirectory(basepath);
-                File.WriteAllBytes($@"{basepath}\{Path.GetFileNameWithoutExtension(path.AssetPath)}",
+                File.WriteAllBytes($@"{basepath}/{Path.GetFileNameWithoutExtension(path.AssetPath)}",
                     written);
             }
             else
             {
                 if (Directory.Exists(basepath))
                 {
-                    if (File.Exists($@"{basepath}\{Path.GetFileNameWithoutExtension(path.AssetPath)}"))
+                    if (File.Exists($@"{basepath}/{Path.GetFileNameWithoutExtension(path.AssetPath)}"))
                     {
-                        File.Delete($@"{basepath}\{Path.GetFileNameWithoutExtension(path.AssetPath)}");
+                        File.Delete($@"{basepath}/{Path.GetFileNameWithoutExtension(path.AssetPath)}");
                     }
 
                     if (Directory.GetFiles(basepath).Length == 0)

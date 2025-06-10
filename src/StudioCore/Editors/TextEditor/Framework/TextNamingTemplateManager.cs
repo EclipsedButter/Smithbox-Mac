@@ -15,8 +15,8 @@ public class TextNamingTemplateManager
 {
     private TextEditorScreen Screen;
 
-    public string RootPath = $"{AppContext.BaseDirectory}\\Assets\\Workflow\\Naming Templates\\";
-    public string ProjectPath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Naming Templates\\";
+    public string RootPath = $"{AppContext.BaseDirectory}/Assets/Workflow/Naming Templates/";
+    public string ProjectPath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Naming Templates/";
 
     public Dictionary<string, FmgEntryGeneratorBase> GeneratorDictionary = new();
 
@@ -68,7 +68,7 @@ public class TextNamingTemplateManager
 
     public void OnProjectChanged()
     {
-        ProjectPath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Naming Templates\\";
+        ProjectPath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Naming Templates/";
 
         GeneratorDictionary = new();
 

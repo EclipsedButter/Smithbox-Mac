@@ -20,7 +20,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class NodeGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Node Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Node Groups/";
 
         public static List<string> NodeGroupFiles = new List<string>();
 
@@ -238,7 +238,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static NodeList ReadNodeGroup(string entry)
         {
             var newNodeList = new NodeList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

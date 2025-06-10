@@ -20,7 +20,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
 
     public static class BufferLayoutGroups
     {
-        public static string ExportBasePath = $"{Smithbox.ProjectRoot}\\.smithbox\\Workflow\\Buffer Layout Groups\\";
+        public static string ExportBasePath = $"{Smithbox.ProjectRoot}/.smithbox/Workflow/Buffer Layout Groups/";
 
         public static List<string> BufferLayoutGroupFiles = new List<string>();
 
@@ -238,7 +238,7 @@ namespace StudioCore.Editors.ModelEditor.Tools
         public static BufferLayoutList ReadBufferLayoutGroup(string entry)
         {
             var newBufferLayoutList = new BufferLayoutList();
-            var readPath = $"{ExportBasePath}\\{entry}.json";
+            var readPath = $"{ExportBasePath}/{entry}.json";
 
             try
             {

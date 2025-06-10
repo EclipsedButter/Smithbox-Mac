@@ -45,7 +45,7 @@ public static class TextBank
             {
                 if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
                 {
-                    var fmgList = TextLocator.GetFmgs("menu\\text\\");
+                    var fmgList = TextLocator.GetFmgs("menu/text/");
 
                     foreach (var path in fmgList)
                     {
@@ -54,7 +54,7 @@ public static class TextBank
                 }
                 else if (Smithbox.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
                 {
-                    var fmgList = TextLocator.GetFmgs("lang\\");
+                    var fmgList = TextLocator.GetFmgs("lang/");
 
                     foreach (var path in fmgList)
                     {
@@ -87,7 +87,7 @@ public static class TextBank
         {
             if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
             {
-                var fmgList = TextLocator.GetFmgs("menu\\text\\", false, targetDir);
+                var fmgList = TextLocator.GetFmgs("menu/text/", false, targetDir);
 
                 foreach (var path in fmgList)
                 {
@@ -96,7 +96,7 @@ public static class TextBank
             }
             else if (Smithbox.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
             {
-                var fmgList = TextLocator.GetFmgs("lang\\", false, targetDir);
+                var fmgList = TextLocator.GetFmgs("lang/", false, targetDir);
 
                 foreach (var path in fmgList)
                 {
@@ -137,7 +137,7 @@ public static class TextBank
         {
             if (Smithbox.ProjectType is ProjectType.DS2 or ProjectType.DS2S)
             {
-                var fmgList = TextLocator.GetFmgs("menu\\text\\", true);
+                var fmgList = TextLocator.GetFmgs("menu/text/", true);
 
                 foreach (var path in fmgList)
                 {
@@ -146,7 +146,7 @@ public static class TextBank
             }
             else if (Smithbox.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
             {
-                var fmgList = TextLocator.GetFmgs("lang\\", true);
+                var fmgList = TextLocator.GetFmgs("lang/", true);
 
                 foreach (var path in fmgList)
                 {

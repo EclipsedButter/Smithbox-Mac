@@ -38,7 +38,7 @@ namespace Veldrid
         private VkPhysicalDeviceFeatures _physicalDeviceFeatures;
         private VkPhysicalDeviceVulkan11Features _physicalDeviceFeatures11;
         private VkPhysicalDeviceVulkan12Features _physicalDeviceFeatures12;
-        private VkPhysicalDeviceVulkan13Features _physicalDeviceFeatures13;
+        //private VkPhysicalDeviceVulkan13Features _physicalDeviceFeatures13; //!
         private VkPhysicalDeviceMemoryProperties _physicalDeviceMemProperties;
         private VkDevice _device;
         
@@ -59,6 +59,7 @@ namespace Veldrid
         private bool _standardClipYDirection;
         private vkGetBufferMemoryRequirements2_t _getBufferMemoryRequirements2;
         private vkGetImageMemoryRequirements2_t _getImageMemoryRequirements2;
+        private vkCreateMetalSurfaceEXT_t _createMetalSurfaceEXT;
 
         // Staging Resources
         private const uint MinStagingBufferSize = 64;
@@ -84,6 +85,7 @@ namespace Veldrid
         internal VmaAllocator Allocator => _vmaAllocator;
         internal VkDescriptorPoolManager DescriptorPoolManager => _descriptorPoolManager;
         internal bool DebugLabelsEnabled => _debugLabelEnabled;
+        public vkCreateMetalSurfaceEXT_t CreateMetalSurfaceEXT => _createMetalSurfaceEXT;
 
         private readonly object _submittedFencesLock = new();
         private readonly ConcurrentQueue<VkFence> _availableSubmissionFences = new();
@@ -1426,16 +1428,26 @@ namespace Veldrid
             cl.End();
 
             bool useExtraFence = fence != null;
-            var cbSubmitInfo = new VkCommandBufferSubmitInfo
+            // VK 1.3
+            //var cbSubmitInfo = new VkCommandBufferSubmitInfo
+            //{
+            //    commandBuffer = vkCB,
+            //    deviceMask = 0,
+            //};
+            //var si = new VkSubmitInfo2
+            //{
+            //    flags = VkSubmitFlags.None,
+            //    commandBufferInfoCount = 1,
+            //    pCommandBufferInfos = &cbSubmitInfo,
+            //};
+            var si = new VkSubmitInfo
             {
-                commandBuffer = vkCB,
-                deviceMask = 0,
-            };
-            var si = new VkSubmitInfo2
-            {
-                flags = VkSubmitFlags.None,
-                commandBufferInfoCount = 1,
-                pCommandBufferInfos = &cbSubmitInfo,
+                pCommandBuffers = &vkCB,
+                commandBufferCount = 1,
+                pWaitSemaphores = null,
+                waitSemaphoreCount = 0,
+                pSignalSemaphores = null,
+                signalSemaphoreCount = 0
             };
 
             var queue = _queues[(int)cl.SubmissionQueue];
@@ -1454,11 +1466,14 @@ namespace Veldrid
             
             lock (_submitLock)
             {
-                VkResult result = vkQueueSubmit2(queue, 1, &si, vkFence);
+                //! VK 1.3
+                //VkResult result = vkQueueSubmit2(queue, 1, &si, vkFence);
+                VkResult result = vkQueueSubmit(queue, 1, &si, vkFence);
+
                 CheckResult(result);
                 if (useExtraFence)
                 {
-                    result = vkQueueSubmit2(queue, 0, null, submissionFence);
+                    result = vkQueueSubmit(queue, 0, null, submissionFence);
                     CheckResult(result);
                 }
                 _commandListPool.Recycle(cl);
@@ -1567,7 +1582,7 @@ namespace Veldrid
 
         private void CreateInstance(bool debug, VulkanDeviceOptions options)
         {
-            VkResult result = vkInitialize();
+            VkResult result = vkInitialize("libMoltenVK.dylib");
             CheckResult(result);
             if (result != VkResult.Success)
             {
@@ -1619,13 +1634,20 @@ namespace Veldrid
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                if (availableInstanceExtensions.Contains(CommonStrings.VK_MVK_MACOS_SURFACE_EXTENSION_NAME))
+                if (availableInstanceExtensions.Contains(CommonStrings.VK_EXT_METAL_SURFACE_EXTENSION_NAME))
                 {
-                    _surfaceExtensions.Add(CommonStrings.VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
+                    _surfaceExtensions.Add(CommonStrings.VK_EXT_METAL_SURFACE_EXTENSION_NAME);
                 }
-                if (availableInstanceExtensions.Contains(CommonStrings.VK_MVK_IOS_SURFACE_EXTENSION_NAME))
+                else // Legacy MoltenVK extensions
                 {
-                    _surfaceExtensions.Add(CommonStrings.VK_MVK_IOS_SURFACE_EXTENSION_NAME);
+                    if (availableInstanceExtensions.Contains(CommonStrings.VK_MVK_MACOS_SURFACE_EXTENSION_NAME))
+                    {
+                        _surfaceExtensions.Add(CommonStrings.VK_MVK_MACOS_SURFACE_EXTENSION_NAME);
+                    }
+                    if (availableInstanceExtensions.Contains(CommonStrings.VK_MVK_IOS_SURFACE_EXTENSION_NAME))
+                    {
+                        _surfaceExtensions.Add(CommonStrings.VK_MVK_IOS_SURFACE_EXTENSION_NAME);
+                    }
                 }
             }
 
@@ -1690,6 +1712,12 @@ namespace Veldrid
             {
                 throw new VeldridException("Failed to create Vulkan instance.");
             }
+
+            if (HasSurfaceExtension(CommonStrings.VK_EXT_METAL_SURFACE_EXTENSION_NAME))
+            {
+                _createMetalSurfaceEXT = GetInstanceProcAddr<vkCreateMetalSurfaceEXT_t>("vkCreateMetalSurfaceEXT");
+            }
+
             vkLoadInstanceOnly(_instance);
 
             if (debug && debugUtilsExtensionAvailable)
@@ -1773,12 +1801,13 @@ namespace Veldrid
                 sbyte* utf8NamePtr = physicalDeviceProperties.deviceName;
                 deviceName = Encoding.UTF8.GetString((byte*)utf8NamePtr, (int)VK_MAX_PHYSICAL_DEVICE_NAME_SIZE);
 
-                var deviceVulkan13Features = new VkPhysicalDeviceVulkan13Features
-                {
-                };
+                //!
+                //var deviceVulkan13Features = new VkPhysicalDeviceVulkan13Features
+                //{
+                //};
                 var deviceVulkan12Features = new VkPhysicalDeviceVulkan12Features
                 {
-                    pNext = &deviceVulkan13Features,
+                    //pNext = &deviceVulkan13Features,
                 };
                 var deviceVulkan11Features = new VkPhysicalDeviceVulkan11Features
                 {
@@ -1801,17 +1830,18 @@ namespace Veldrid
                 if (deviceVulkan11Features.storageBuffer16BitAccess != VkBool32.True ||
                     deviceVulkan11Features.uniformAndStorageBuffer16BitAccess != VkBool32.True)
                     continue;
-                if (deviceVulkan12Features.drawIndirectCount != VkBool32.True ||
+                //! these aren't supported by MoltenVK
+                if (//deviceVulkan12Features.drawIndirectCount != VkBool32.True ||
                     deviceVulkan12Features.descriptorIndexing != VkBool32.True ||
                     deviceVulkan12Features.descriptorBindingVariableDescriptorCount != VkBool32.True ||
                     deviceVulkan12Features.runtimeDescriptorArray != VkBool32.True ||
                     deviceVulkan12Features.descriptorBindingSampledImageUpdateAfterBind != VkBool32.True ||
                     deviceVulkan12Features.shaderSampledImageArrayNonUniformIndexing != VkBool32.True)
                     continue;
-                if (deviceVulkan13Features.synchronization2 != VkBool32.True ||
-                    deviceVulkan13Features.dynamicRendering != VkBool32.True ||
-                    deviceVulkan13Features.maintenance4 != VkBool32.True)
-                    continue;
+                //if (deviceVulkan13Features.synchronization2 != VkBool32.True ||
+                //    deviceVulkan13Features.dynamicRendering != VkBool32.True ||
+                //    deviceVulkan13Features.maintenance4 != VkBool32.True)
+                //    continue;
                 
                 // We found a physical device with the required features
                 _physicalDevice = device;
@@ -1819,7 +1849,7 @@ namespace Veldrid
                 _physicalDeviceFeatures = deviceFeatures.features;
                 _physicalDeviceFeatures11 = deviceVulkan11Features;
                 _physicalDeviceFeatures12 = deviceVulkan12Features;
-                _physicalDeviceFeatures13 = deviceVulkan13Features;
+                //_physicalDeviceFeatures13 = deviceVulkan13Features;
                 return;
             }
 
@@ -1947,7 +1977,7 @@ namespace Veldrid
 
             var deviceFeatures12 = new VkPhysicalDeviceVulkan12Features
             {
-                drawIndirectCount = VkBool32.True,
+                //drawIndirectCount = VkBool32.True,
                 descriptorIndexing = VkBool32.True,
                 descriptorBindingVariableDescriptorCount = VkBool32.True,
                 descriptorBindingSampledImageUpdateAfterBind = VkBool32.True,
@@ -1955,14 +1985,14 @@ namespace Veldrid
                 shaderSampledImageArrayNonUniformIndexing = VkBool32.True
             };
             
-            var deviceFeatures13 = new VkPhysicalDeviceVulkan13Features
-            {
-                synchronization2 = VkBool32.True,
-                dynamicRendering = VkBool32.True,
-                maintenance4 = VkBool32.True
-            };
+            //var deviceFeatures13 = new VkPhysicalDeviceVulkan13Features
+            //{
+            //    synchronization2 = VkBool32.True,
+            //    dynamicRendering = VkBool32.True,
+            //    maintenance4 = VkBool32.True
+            //};
             deviceFeatures11.pNext = &deviceFeatures12;
-            deviceFeatures12.pNext = &deviceFeatures13;
+            //deviceFeatures12.pNext = &deviceFeatures13;
 
             uint propertyCount = 0;
             VkResult result = vkEnumerateDeviceExtensionProperties(_physicalDevice, null, &propertyCount, null);
@@ -2077,6 +2107,16 @@ namespace Veldrid
             utf8Ptr[byteCount] = 0;
 
             return (IntPtr)vkGetInstanceProcAddr(_instance, new ReadOnlySpan<sbyte>(utf8Ptr, byteCount + 1));
+        }
+
+        private T GetInstanceProcAddr<T>(string name)
+        {
+            IntPtr funcPtr = GetInstanceProcAddr(name);
+            if (funcPtr != IntPtr.Zero)
+            {
+                return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
+            }
+            return default;
         }
 
         private IntPtr GetDeviceProcAddr(string name)
@@ -2440,4 +2480,24 @@ namespace Veldrid
 
     internal unsafe delegate void vkGetBufferMemoryRequirements2_t(VkDevice device, VkBufferMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements);
     internal unsafe delegate void vkGetImageMemoryRequirements2_t(VkDevice device, VkImageMemoryRequirementsInfo2* pInfo, VkMemoryRequirements2* pMemoryRequirements);
+
+    // VK_EXT_metal_surface
+    //! made public
+
+    public unsafe delegate VkResult vkCreateMetalSurfaceEXT_t(
+        VkInstance instance,
+        VkMetalSurfaceCreateInfoEXT* pCreateInfo,
+        VkAllocationCallbacks* pAllocator,
+        VkSurfaceKHR* pSurface);
+
+    public unsafe struct VkMetalSurfaceCreateInfoEXT
+    {
+        public const VkStructureType VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT = (VkStructureType)1000217000;
+
+        public VkStructureType sType;
+        public void* pNext;
+        public uint flags;
+        public void* pLayer;
+    }
+
 }

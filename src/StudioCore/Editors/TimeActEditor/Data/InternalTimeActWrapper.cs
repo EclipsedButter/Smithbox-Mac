@@ -24,7 +24,7 @@ public class InternalTimeActWrapper : IComparable<InternalTimeActWrapper>
     {
         Filepath = path;
         TAE = taeData;
-        Name = Path.GetFileNameWithoutExtension(path);
+        Name = Path.GetFileNameWithoutExtension(path.Replace('\\','/')); //!
     }
 
     public int CompareTo(InternalTimeActWrapper other)

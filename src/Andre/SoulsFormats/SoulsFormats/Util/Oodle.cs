@@ -13,6 +13,7 @@ public class Oodle
 
     static bool Oodle6Exists = false;
     static bool Oodle8Exists = false;
+    static bool Oodle9Exists = false;
 
     private static bool CanUseOodle6()
     {
@@ -20,7 +21,12 @@ public class Oodle
         {
             return true;
         }
-        if (Path.Exists($@"{Directory.GetCurrentDirectory()}\oo2core_6_win64.dll"))
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Path.Exists($@"{Directory.GetCurrentDirectory()}\oo2core_6_win64.dll"))
+        {
+            Oodle6Exists = true;
+            return true;
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && Path.Exists($@"{Directory.GetCurrentDirectory()}/liboo2coremac64.2.6.dylib"))
         {
             Oodle6Exists = true;
             return true;
@@ -34,9 +40,33 @@ public class Oodle
         {
             return true;
         }
-        if (Path.Exists($@"{Directory.GetCurrentDirectory()}\oo2core_8_win64.dll"))
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Path.Exists($@"{Directory.GetCurrentDirectory()}\oo2core_8_win64.dll"))
         {
             Oodle8Exists = true;
+            return true;
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && Path.Exists($@"{Directory.GetCurrentDirectory()}/liboo2coremac64.2.8.dylib"))
+        {
+            Oodle8Exists = true;
+            return true;
+        }
+        return false;
+    }
+
+    private static bool CanUseOodle9()
+    {
+        if (Oodle9Exists)
+        {
+            return true;
+        }
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && Path.Exists($@"{Directory.GetCurrentDirectory()}\oo2core_9_win64.dll"))
+        {
+            Oodle9Exists = true;
+            return true;
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && Path.Exists($@"{Directory.GetCurrentDirectory()}/liboo2coremac64.2.9.dylib"))
+        {
+            Oodle9Exists = true;
             return true;
         }
         return false;
@@ -53,6 +83,8 @@ public class Oodle
             // Try to get preferred oodle using compressionLevel.
             if (compressionLevel == 9)
             {
+                if (CanUseOodle9())
+                    return new Oodle29();
                 if (CanUseOodle8())
                     return new Oodle28();
                 if (CanUseOodle6())
@@ -64,6 +96,8 @@ public class Oodle
                     return new Oodle26();
                 if (CanUseOodle8())
                     return new Oodle28();
+                if (CanUseOodle9())
+                    return new Oodle29();
             }
         }
         else
@@ -72,10 +106,12 @@ public class Oodle
                 return new Oodle26();
             if (CanUseOodle8())
                 return new Oodle28();
+            if (CanUseOodle9())
+                return new Oodle29();
         }
 
         throw new NoOodleFoundException($"Could not find a supported version of oo2core. "
-            + $"Please copy oo2core_6_win64.dll or oo2core_8_win64.dll into the program directory");
+            + $"Please copy liboo2coremac64.2.6.dylib or liboo2coremac64.2.8.dylib or liboo2coremac64.2.9.dylib into the program directory");
     }
 
     [StructLayout(LayoutKind.Sequential)]
